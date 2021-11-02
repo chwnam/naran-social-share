@@ -1,0 +1,20 @@
+1.0.2
+-----
+2021-11-02
+
+- prefix-change.php bug fix. (812e02ff)
+
+
+1.0.1
+-----
+2021-10-31
+
+- Add functions.php test code.
+- Trim header comment.
+
+
+1.0.0
+-----
+2021-10-31
+
+- Initial version.

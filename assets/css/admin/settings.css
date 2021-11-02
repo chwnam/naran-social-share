@@ -1,0 +1,12 @@
+.nss-available-widget {
+    margin-top: 0;
+}
+
+#nss_option-width,
+#nss_option-height {
+    width: 6em;
+}
+
+#nss_option-kakao_api_key {
+    width: 35em;
+}
