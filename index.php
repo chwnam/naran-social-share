@@ -3,8 +3,8 @@
  * Plugin Name:       Naran Social Share
  * Plugin URI:        https://github.com/chwnam/naran-social-share
  * Description:       Share your posts to social media, and so on.
- * Version:           0.0.0
- * Requires at least:
+ * Version:           0.1.0
+ * Requires at least: 4.4.0
  * Requires PHP:      7.4
  * Author:            changwoo
  * Author URI:        https://blog.changwoo.pe.kr/
@@ -12,7 +12,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       nss
  * Domain Path:       /languages
- * CPBN version:      1.0.2
+ * CPBN version:      1.1.1
  */
 
 /* ABSPATH check */
@@ -23,9 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/vendor/autoload.php';
 
 const NSS_MAIN_FILE = __FILE__;
-const NSS_VERSION   = '0.0.0';
+const NSS_VERSION   = '0.1.0';
 const NSS_PRIORITY = 885;
 
 nss();
-
-// TODO: uninstall script.

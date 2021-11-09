@@ -1,1 +1,0 @@
-`assets/img` directory, for image files.

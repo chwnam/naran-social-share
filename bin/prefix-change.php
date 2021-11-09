@@ -17,7 +17,7 @@ class NBPC_Prefix_Changer {
 
 	private string $new_prefix = '';
 
-	private array $subdirs = [ 'includes' ];
+	private array $subdirs = [ 'core', 'includes' ];
 
 	public function __construct( string $root_directory, string $old_prefix, string $new_prefix ) {
 		$this->root_directory = rtrim( realpath( $root_directory ), '\\/' );
@@ -47,7 +47,7 @@ class NBPC_Prefix_Changer {
 	}
 
 	public function change_php_file_name_prefixes() {
-		$pattern = "/^(class|interface|abstract)-{$this->old_prefix}-(.+)$/";
+		$pattern = "/^(abstract|class|interface|trait)-{$this->old_prefix}-(.+)$/";
 
 		foreach ( $this->subdirs as $subdir ) {
 			$iterator = new RegexIterator(
@@ -116,38 +116,41 @@ class NBPC_Prefix_Changer {
 }
 
 
-function check_lock_file( string $root_dir ) {
-	if ( file_exists( "{$root_dir}/.prefix-change.lock" ) ) {
-		throw new RuntimeException( '`.prefix-change.lock` file found. Please remove the file and run this script again.' );
-	}
-}
-
 function help() {
 	echo "\nNaran boilerplate code prefix changer\n";
 	echo "=====================================\n\n";
-	echo "Usage: prefix-change.php NEW_PREFIX [OLD_PREFIX]\n\n";
+	echo "Usage: prefix-change.php [NEW_PREFIX] [OLD_PREFIX]\n\n";
 	echo "       NEW_PREFIX your new prefix string. Accepts only lowercase alphabets, and numbers.\n\n";
 	echo "       OLD_PREFIX current prefix string. Defaults to 'nbpc'.\n\n";
 }
+
 
 function confirm( string $message ): bool {
 	echo $message . " [Y/n] ";
 	return 'y' === trim( strtolower( readline() ) );
 }
 
+
 if ( 'cli' === php_sapi_name() ) {
-	if ( 2 > $argc || 3 < $argc ) {
+	$root_dir = dirname( __DIR__ );
+
+	if ( 1 === $argc ) {
+		echo 'Please input your new prefix: ';
+		$new_prefix = trim( fgets( STDIN ) );
+		$old_prefix = 'nbpc';
+	} elseif ( 2 === $argc ) {
+		$new_prefix = $argv[1];
+		$old_prefix = 'nbpc';
+	} elseif ( 3 === $argc ) {
+		$new_prefix = $argv[1];
+		$old_prefix = $argv[2];
+	} else {
 		help();
 		exit;
 	}
 
-	$root_dir   = dirname( __DIR__ );
-	$new_prefix = $argv[1];
-	$old_prefix = $argv[2] ?? 'nbpc';
-
 	try {
-		check_lock_file( $root_dir );
-		if ( confirm( "Change prefix from `{$old_prefix}` to `{$new_prefix}`. Are you sure?" ) ) {
+		if ( confirm( "Replace prefix from `{$old_prefix}` to `{$new_prefix}`. Are you sure?" ) ) {
 			$change = new NBPC_Prefix_Changer( $root_dir, $old_prefix, $new_prefix );
 			$change->change_source_codes();
 			$change->change_php_file_name_prefixes();
