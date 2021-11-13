@@ -42,7 +42,7 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 					)
 				;
 
-				$this->add_filter( 'the_content', 'content' );
+				$this->add_filter( 'the_content', 'content', nss_setup()->get_priority() );
 			}
 		}
 
@@ -66,7 +66,14 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 
 			$buttons = preg_replace( '/>\s+</', '><', $buttons );
 
-			return $content . $buttons;
+			$concat = nss_setup()->get_concat();
+			if ( 'prepend' === $concat ) {
+				$content = $buttons . $content;
+			} elseif ( 'append' === $concat ) {
+				$content = $content . $buttons;
+			}
+
+			return $content;
 		}
 
 		/**

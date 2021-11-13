@@ -15,6 +15,7 @@
         share(type) {
             if ('function' === typeof this[type]) {
                 this[type].call(this, opts.shareParams);
+                document.dispatchEvent(new CustomEvent('nss', {detail: {type: type, params: opts.shareParams}}));
             }
         },
         facebook(s) {
@@ -49,6 +50,18 @@
         },
         naverBlog(s) {
             this.openPopup('https://blog.naver.com/LinkShare.nhn?url=' + encodeURIComponent(s.permalink) + '&title=' + encodeURIComponent(s.title));
+        },
+        clipboard(s) {
+            if (s.permalink && s.permalink.length) {
+                let input = document.createElement('input');
+                input.type = 'text';
+                input.value = s.permalink;
+                document.body.appendChild(input);
+                input.select();
+                input.setSelectionRange(0, s.permalink.length);
+                document.execCommand('copy');
+                input.remove();
+            }
         },
         openPopup(href) {
             const top = (screen.availHeight - opts.height) * 0.5,
@@ -88,6 +101,5 @@
         });
     });
 
-
-    window.naranSocialShare = sharer;
+    window.nss = sharer;
 })();

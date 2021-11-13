@@ -108,6 +108,41 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				]
 			);
 
+			add_settings_field(
+				'nss-priority',
+				__( 'Priority', 'nss' ),
+				[ $this, 'render_input' ],
+				'nss',
+				'nss-general',
+				[
+					'id'          => "$option_name-priority",
+					'label_for'   => "$option_name-priority",
+					'name'        => "{$option_name}[priority]",
+					'type'        => 'number',
+					'value'       => $setup->get_priority(),
+					'description' => __( '\'the_content\' filter priority.', 'nss' ),
+				]
+			);
+
+			add_settings_field(
+				'nss-concat',
+				__( 'Concatenation', 'nss' ),
+				[ $this, 'render_select' ],
+				'nss',
+				'nss-general',
+				[
+					'id'        => "$option_name-concat",
+					'label_for' => "$option_name-concat",
+					'name'      => "{$option_name}[concat]",
+					'value'     => $setup->get_concat(),
+					'options'   => [
+						'prepend' => __( 'Prepend', 'nss' ),
+						'append'  => __( 'Append', 'nss' ),
+					],
+					'attrs'     => [],
+				]
+			);
+
 			add_settings_section(
 				'nss-kakao',
 				__( 'Kakao API', 'nss' ),
@@ -168,12 +203,46 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				esc_html( $args['instruction'] )
 			);
 
-			if ( $args['description'] ) {
-				$kses = [
-					'a' => [ 'href' => true, 'target' => true ]
-				];
-				echo '<p class="description">' . wp_kses( $args['instruction'], $kses ) . '</p>';
+			self::render_description( $args['description'] );
+		}
+
+		/**
+		 * Render select widget
+		 *
+		 * @param array $args
+		 */
+		public function render_select( array $args ) {
+			$args = wp_parse_args(
+				$args,
+				[
+					'id'          => '',
+					'name'        => '',
+					'value'       => '',
+					'options'     => [],
+					'attrs'       => [],
+					'description' => '',
+				]
+			);
+
+			$options = [];
+			foreach ( $args['options'] as $val => $label ) {
+				$options[] = sprintf(
+					'<option value="%s" %s>%s</option>',
+					esc_attr( $val ),
+					selected( $val, $args['value'], false ),
+					esc_html( $label )
+				);
 			}
+
+			printf(
+				'<select id="%s" name="%s" %s>%s</select>',
+				esc_attr( $args['id'] ),
+				esc_attr( $args['name'] ),
+				self::format_attrs( (array) $args['attrs'] ),
+				implode( ' ', $options ),
+			);
+
+			self::render_description( $args['description'] );
 		}
 
 		/**
@@ -193,22 +262,10 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					'class'       => 'text',
 					'value'       => '',
 					'placeholder' => '',
-					'attrs'       => '',
+					'attrs'       => [],
 					'description' => '',
 				]
 			);
-
-			if ( ! empty( $args['attrs'] ) ) {
-				$buffer = [];
-				foreach ( (array) $args['attrs'] as $key => $value ) {
-					$key   = sanitize_key( $key );
-					$value = esc_attr( $value );
-					if ( $key ) {
-						$buffer[] = "$key=\"$value\"";
-					}
-				}
-				$args['attrs'] = implode( ' ', $buffer );
-			}
 
 			printf(
 				'<input id="%s" name="%s" type="%s" class="%s" value="%s" placeholder="%s" %s> ',
@@ -218,15 +275,10 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				esc_attr( $args['class'] ),
 				esc_attr( $args['value'] ),
 				esc_attr( $args['placeholder'] ),
-				$args['attrs']
+				self::format_attrs( (array) $args['attrs'] )
 			);
 
-			if ( $args['description'] ) {
-				$kses = [
-					'a' => [ 'href' => true, 'target' => true ]
-				];
-				echo '<p class="description">' . wp_kses( $args['instruction'], $kses ) . '</p>';
-			}
+			self::render_description( $args['description'] );
 		}
 
 		/**
@@ -243,15 +295,42 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 			);
 
 			$this
-				->enqueue_style('nss-admin-settings')
+				->enqueue_style( 'nss-admin-settings' )
 				->render(
-				'admin/available-widget',
-				[
-					'option_name' => $args['option_name'],
-					'available'   => $args['available'],
-					'value'       => $args['value'],
-				]
-			);
+					'admin/available-widget',
+					[
+						'option_name' => $args['option_name'],
+						'available'   => $args['available'],
+						'value'       => $args['value'],
+					]
+				)
+			;
+		}
+
+		private static function format_attrs( array $attrs ): string {
+			$buffer = [];
+
+			foreach ( $attrs as $key => $value ) {
+				$key   = sanitize_key( $key );
+				$value = esc_attr( $value );
+				if ( $key ) {
+					$buffer[] = "$key=\"$value\"";
+				}
+			}
+
+			return implode( ' ', $buffer );
+		}
+
+		private static function render_description( string $description ) {
+			if ( $description ) {
+				$kses = [
+					'a' => [
+						'href'   => true,
+						'target' => true
+					],
+				];
+				echo '<p class="description">' . wp_kses( $description, $kses ) . '</p>';
+			}
 		}
 	}
 }

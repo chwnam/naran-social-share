@@ -19,6 +19,7 @@ if ( ! function_exists( 'nss_get_available_services' ) ) {
 			'telegram'  => __( 'Telegram', 'nss' ),
 			'kakaoTalk' => __( 'KakaoTalk', 'nss' ),
 			'naverBlog' => __( 'Naver Blog', 'nss' ),
+			'clipboard' => __( 'Clipboard', 'nss' ),
 		] );
 	}
 }

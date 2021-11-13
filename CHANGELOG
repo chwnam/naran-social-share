@@ -1,3 +1,15 @@
+0.2.0
+-----
+2021-11-13
+
+- Add clipboard share feature.
+- Add 'nss' custom javascript event.
+- Add korean localization.
+- Concat option, and priority option added.
+- JavaScript global variable renamed from 'naranSocialShare' to 'nss'.
+- Some template code update.
+
+
 0.1.0
 -----
 2021-11-09

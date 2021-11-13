@@ -40,6 +40,14 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 			return (int) $this->get_value( 'height' );
 		}
 
+		public function get_priority(): int {
+			return (int) $this->get_value( 'priority' );
+		}
+
+		public function get_concat(): string {
+			return $this->get_value( 'concat' );
+		}
+
 		public function get_kakao_api_key(): string {
 			return (string) $this->get_value( 'kakao_api_key' );
 		}
@@ -66,6 +74,12 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 
 				// Popup window height (px).
 				'height'        => 320,
+
+				// the_content filter priority.
+				'priority'      => 10,
+
+				// concat: prepend, append.
+				'concat'        => 'append',
 
 				// Kakao API Key
 				'kakao_api_key' => '',
@@ -99,6 +113,14 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 
 			$output['height'] = intval(
 				$_POST[ $option_name ]['height'] ?? $default['height']
+			);
+
+			$output['priority'] = intval(
+				$_POST[ $option_name ]['priority'] ?? $default['priority']
+			);
+
+			$output['concat'] = sanitize_key(
+				$_POST[ $option_name ]['concat'] ?? $default['concat']
 			);
 
 			$output['kakao_api_key'] = sanitize_text_field(

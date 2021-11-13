@@ -1,0 +1,157 @@
+# Copyright (C) 2021 changwoo
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Naran Social Share 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-social-"
+"share\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-11-13T18:17:43+09:00\n"
+"PO-Revision-Date: 2021-11-13 18:23+0900\n"
+"X-Generator: Poedit 2.3\n"
+"X-Domain: nss\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko_KR\n"
+
+#. Plugin Name of the plugin
+#: includes/modules/class-nss-admin-settings.php:23
+msgid "Naran Social Share"
+msgstr "나란 소셜 공유"
+
+#. Plugin URI of the plugin
+msgid "https://github.com/chwnam/naran-social-share"
+msgstr "https://github.com/chwnam/naran-social-share"
+
+#. Description of the plugin
+msgid "Share your posts to social media, and so on."
+msgstr "포스트를 소셜 미디어 등에 공유하세요."
+
+#. Author of the plugin
+msgid "changwoo"
+msgstr "changwoo"
+
+#. Author URI of the plugin
+msgid "https://blog.changwoo.pe.kr/"
+msgstr "https://blog.changwoo.pe.kr/"
+
+#. translators: formatted module name.
+#: core/abstracts/abstract-nss-main-base.php:131
+msgid "%s is invalid for callback."
+msgstr "%s 는 잘못된 콜백."
+
+#: includes/functions.php:16
+msgid "Facebook"
+msgstr "페이스북"
+
+#: includes/functions.php:17
+msgid "Twitter"
+msgstr "트위터"
+
+#: includes/functions.php:18
+msgid "LinkedIn"
+msgstr "링크드인"
+
+#: includes/functions.php:19
+msgid "Telegram"
+msgstr "텔레그램"
+
+#: includes/functions.php:20
+msgid "KakaoTalk"
+msgstr "카카오톡"
+
+#: includes/functions.php:21
+msgid "Naver Blog"
+msgstr "네이버 블로그"
+
+#: includes/functions.php:22
+msgid "Clipboard"
+msgstr "클립보드"
+
+#: includes/modules/class-nss-admin-settings.php:22
+msgid "Naran social share settings"
+msgstr "나란 소셜 공유 설정"
+
+#: includes/modules/class-nss-admin-settings.php:45
+msgid "General"
+msgstr "일반"
+
+#: includes/modules/class-nss-admin-settings.php:52
+msgid "Enable/Disable"
+msgstr "활성/비활성"
+
+#: includes/modules/class-nss-admin-settings.php:60
+msgid "Use social share"
+msgstr "소셜 공유 사용"
+
+#: includes/modules/class-nss-admin-settings.php:66
+msgid "Available Services"
+msgstr "가능한 서비스"
+
+#: includes/modules/class-nss-admin-settings.php:79
+msgid "Popup Width"
+msgstr "팝업 너비"
+
+#: includes/modules/class-nss-admin-settings.php:89
+#: includes/modules/class-nss-admin-settings.php:106
+msgid "Popup width, in pixel"
+msgstr "팝업 창의 너비, 픽셀 낟위"
+
+#: includes/modules/class-nss-admin-settings.php:96
+msgid "Popup Height"
+msgstr "팝업 높이"
+
+#: includes/modules/class-nss-admin-settings.php:113
+msgid "Priority"
+msgstr "우선순위"
+
+#: includes/modules/class-nss-admin-settings.php:123
+msgid "'the_content' filter priority."
+msgstr "'the_content' 필터 순위."
+
+#: includes/modules/class-nss-admin-settings.php:129
+msgid "Concatenation"
+msgstr "버튼 위치"
+
+#: includes/modules/class-nss-admin-settings.php:139
+msgid "Prepend"
+msgstr "본문 이전"
+
+#: includes/modules/class-nss-admin-settings.php:140
+msgid "Append"
+msgstr "본문 이후"
+
+#: includes/modules/class-nss-admin-settings.php:148
+msgid "Kakao API"
+msgstr "카카오 API"
+
+#: includes/modules/class-nss-admin-settings.php:155
+msgid "JavaScript API Key"
+msgstr "자바스크립트 API"
+
+#: includes/modules/class-nss-admin-settings.php:166
+msgid "Kakao JavaScript API key."
+msgstr "카카오 자바스크립트 API 키."
+
+#. translators: Option message. Translation is not required.
+#: includes/registers/class-nss-register-option.php:30
+msgctxt "Option description."
+msgid "Naran social share option"
+msgstr "나란 소셜 공유 옵션"
+
+#: includes/templates/admin/settings.php:18
+msgid "Naran Social Share Settings"
+msgstr "나란 소셜 공유 설정"
+
+#. translators: clipboard label.
+#: includes/templates/buttons.php:34
+msgid "Copy  this page's URL to %s."
+msgstr "이 페이지 URL을 %s로 복사."
+
+#. translators: available media label.
+#: includes/templates/buttons.php:38
+msgid "Share this page's URL to %s."
+msgstr "이 페이지의 URL을 %s로 공유."

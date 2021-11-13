@@ -166,6 +166,10 @@ if ( ! class_exists( 'NSS_Main_Base' ) ) {
 		public function init_conditional_modules() {
 		}
 
+		public function load_textdomain() {
+			load_plugin_textdomain( 'nss', false, wp_basename( dirname( $this->get_main_file() ) ) . '/languages' );
+		}
+
 		/**
 		 * Return root modules
 		 *
@@ -176,7 +180,9 @@ if ( ! class_exists( 'NSS_Main_Base' ) ) {
 		protected function initialize() {
 			$this->assign_modules( $this->get_modules() );
 
-			$this->add_action( 'wp', 'init_conditional_modules' );
+			$this
+				->add_action( 'plugins_loaded', 'load_textdomain' )
+				->add_action( 'wp', 'init_conditional_modules' );
 
 			do_action( 'nss_initialized' );
 		}
