@@ -30,15 +30,15 @@ if ( ! trait_exists( 'NSS_Template_Impl' ) ) {
 				}
 
 				$paths = [
-					$variant ? STYLESHEETPATH . "/nss/{$dir}/{$file_name}-{$variant}.{$ext}" : false,
-					STYLESHEETPATH . "/nss/{$dir}/{$file_name}.{$ext}",
-					$variant ? TEMPLATEPATH . "/nss/{$dir}/{$file_name}-{$variant}.{$ext}" : false,
-					TEMPLATEPATH . "/nss/{$dir}/{$file_name}.{$ext}",
+					$variant ? get_stylesheet_directory() . "/nss/{$dir}/{$file_name}-{$variant}.{$ext}" : false,
+					get_stylesheet_directory() . "/nss/{$dir}/{$file_name}.{$ext}",
+					$variant ? get_template_directory() . "/nss/{$dir}/{$file_name}-{$variant}.{$ext}" : false,
+					get_template_directory() . "/nss/{$dir}/{$file_name}.{$ext}",
 					$variant ? plugin_dir_path( nss()->get_main_file() ) . "includes/templates/{$dir}/{$file_name}-{$variant}.{$ext}" : false,
 					plugin_dir_path( nss()->get_main_file() ) . "includes/templates/{$dir}/{$file_name}.{$ext}",
 				];
 
-				$paths   = apply_filters( 'nss_locate_file_paths', array_filter( $paths ) );
+				$paths   = apply_filters( 'nss_locate_file_paths', array_filter( $paths ), $filename );
 				$located = false;
 
 				foreach ( (array) $paths as $path ) {
