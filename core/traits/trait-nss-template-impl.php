@@ -16,7 +16,7 @@ if ( ! trait_exists( 'NSS_Template_Impl' ) ) {
 			$variant   = sanitize_key( $variant );
 			$ext       = ltrim( $ext, '.' );
 
-			$cache_name = "{$tmpl_type}:{$relpath}:{$variant}";
+			$cache_name = "$tmpl_type:$relpath:$variant:$ext";
 			$cache      = nss()->get( 'nss:locate_file', [] );
 
 			if ( isset( $cache[ $cache_name ] ) ) {
@@ -38,7 +38,7 @@ if ( ! trait_exists( 'NSS_Template_Impl' ) ) {
 					plugin_dir_path( nss()->get_main_file() ) . "includes/templates/{$dir}/{$file_name}.{$ext}",
 				];
 
-				$paths   = apply_filters( 'nss_locate_file_paths', array_filter( $paths ), $filename );
+				$paths   = apply_filters( 'nss_locate_file_paths', array_filter( $paths ), $cache_name  );
 				$located = false;
 
 				foreach ( (array) $paths as $path ) {
