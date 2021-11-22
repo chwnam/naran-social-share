@@ -31,7 +31,7 @@ if ( ! class_exists( 'NSS_Registers' ) ) {
 					'option'    => NSS_Register_Option::class,
 					'script'    => NSS_Register_Script::class,
 					'style'     => NSS_Register_Style::class,
-					'uninstall' => NSS_Register_Uninstall::class,
+					'uninstall' => function () { return new NSS_Register_Uninstall(); },
 				]
 			);
 		}

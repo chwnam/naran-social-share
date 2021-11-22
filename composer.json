@@ -9,6 +9,12 @@
       "email": "ep6tri@hotmail.com",
       "role": "author",
       "homepage": "https://blog.changwoo.pe.kr"
+    },
+    {
+      "name": "wolfkang",
+      "email": "donghyeok@shoplic.kr",
+      "role": "contributor",
+      "homepage": "https://shoplic.kr/"
     }
   ],
   "scripts": {
@@ -33,7 +39,7 @@
       "includes"
     ]
   },
-  "version": "0.2.0",
+  "version": "0.3.0",
   "require-dev": {
     "phpunit/phpunit": "^7"
   },
