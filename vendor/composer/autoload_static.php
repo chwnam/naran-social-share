@@ -53,6 +53,7 @@ class ComposerStaticInit805bdb5f8a931b4ddb73f24a30402bf7
         'NSS_Register_Option' => __DIR__ . '/../..' . '/includes/registers/class-nss-register-option.php',
         'NSS_Register_Script' => __DIR__ . '/../..' . '/includes/registers/class-nss-register-script.php',
         'NSS_Register_Style' => __DIR__ . '/../..' . '/includes/registers/class-nss-register-style.php',
+        'NSS_Register_Uninstall' => __DIR__ . '/../..' . '/includes/registers/class-nss-register-uninstall.php',
         'NSS_Registers' => __DIR__ . '/../..' . '/includes/modules/class-nss-registers.php',
         'NSS_Reigster_Base_Meta' => __DIR__ . '/../..' . '/core/abstracts/registers/abstract-nss-register-base-meta.php',
         'NSS_Sciprt_Enqueue' => __DIR__ . '/../..' . '/core/etc/class-nss-script-enqueue.php',

@@ -47,6 +47,7 @@ return array(
     'NSS_Register_Option' => $baseDir . '/includes/registers/class-nss-register-option.php',
     'NSS_Register_Script' => $baseDir . '/includes/registers/class-nss-register-script.php',
     'NSS_Register_Style' => $baseDir . '/includes/registers/class-nss-register-style.php',
+    'NSS_Register_Uninstall' => $baseDir . '/includes/registers/class-nss-register-uninstall.php',
     'NSS_Registers' => $baseDir . '/includes/modules/class-nss-registers.php',
     'NSS_Reigster_Base_Meta' => $baseDir . '/core/abstracts/registers/abstract-nss-register-base-meta.php',
     'NSS_Sciprt_Enqueue' => $baseDir . '/core/etc/class-nss-script-enqueue.php',
