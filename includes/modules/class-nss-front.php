@@ -29,7 +29,8 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 				] );
 
 				$this
-					->enqueue_script( 'nss-front' )
+					->script( 'nss-front' )
+					->enqueue()
 					->localize(
 						[
 							'opts' => [
@@ -82,7 +83,19 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 		 * @return bool
 		 */
 		public function is_sharable(): bool {
-			return apply_filters( 'nss_sharable', is_singular() );
+			$setup = nss_setup();
+
+			$post_types = $setup->get_post_types();
+			if ( $post_types ) {
+				$singular = is_singular( $post_types );
+			} else {
+				$singular = false;
+			}
+
+			$exclude  = in_array( get_the_ID(), $setup->get_exclude() );
+			$shareble = $singular && ! $exclude;
+
+			return apply_filters( 'nss_sharable', $shareble );
 		}
 	}
 }

@@ -28,7 +28,11 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 		}
 
 		public function output_admin_menu() {
-			$this->prepre_settings();
+			$this
+				->prepre_settings()
+				->script( 'nss-admin-settings' )
+				->enqueue()
+			;
 
 			$this->render(
 				'admin/settings',
@@ -36,10 +40,11 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 			);
 		}
 
-		private function prepre_settings() {
+		private function prepre_settings(): self {
 			$option_name = nss_option()->option->get_option_name();
 			$setup       = nss_setup();
 
+			// Section: General ////////////////////////////////////////////////////////////////////////////////////////
 			add_settings_section(
 				'nss-general',
 				__( 'General', 'nss' ),
@@ -143,6 +148,43 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				]
 			);
 
+			// Section: Display ////////////////////////////////////////////////////////////////////////////////////////
+			add_settings_section(
+				'nss-display',
+				__( 'Display', 'nss' ),
+				'__return_empty_string',
+				'nss'
+			);
+
+			add_settings_field(
+				'nss-display-post-type',
+				__( 'Post Types', 'nss' ),
+				[ $this, 'render_post_types' ],
+				'nss',
+				'nss-display',
+				[
+					'name'  => $option_name,
+					'value' => $setup->get_post_types(),
+				]
+			);
+
+			add_settings_field(
+				'nss-display-exclude',
+				__( 'Exclude', 'nss' ),
+				[ $this, 'render_textarea' ],
+				'nss',
+				'nss-display',
+				[
+					'id'          => "$option_name-exclude",
+					'label_for'   => "$option_name-exclude",
+					'name'        => "{$option_name}[exclude]",
+					'value'       => implode( "\r\n", $setup->get_exclude() ),
+					'attrs'       => [ 'rows' => 3 ],
+					'description' => __( 'Social share buttons do not appear on posts in this list.', 'nss' ),
+				]
+			);
+
+			// Section: Kakao API //////////////////////////////////////////////////////////////////////////////////////
 			add_settings_section(
 				'nss-kakao',
 				__( 'Kakao API', 'nss' ),
@@ -168,7 +210,17 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				]
 			);
 
+			// Section: Shortcode ////////////////////////////////////////////////////////////////////////////////////////
+			add_settings_section(
+				'nss-shortcode',
+				__( 'Shortcode', 'nss' ),
+				'__return_empty_string',
+				'nss'
+			);
+
 			do_action( 'nss_prepare_settings' );
+
+			return $this;
 		}
 
 		/**
@@ -282,6 +334,36 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 		}
 
 		/**
+		 * Render textarea
+		 *
+		 * @callback
+		 *
+		 * @param array $args
+		 */
+		public function render_textarea( array $args ) {
+			$args = wp_parse_args(
+				$args,
+				[
+					'id'          => '',
+					'name'        => '',
+					'value'       => '',
+					'attrs'       => [],
+					'description' => '',
+				]
+			);
+
+			printf(
+				'<textarea id="%s" name="%s" %s>%s</textarea>',
+				esc_attr( $args['id'] ),
+				esc_attr( $args['name'] ),
+				self::format_attrs( (array) $args['attrs'] ),
+				esc_textarea( $args['value'] )
+			);
+
+			self::render_description( $args['description'] );
+		}
+
+		/**
 		 * Render 'available' custom widget.
 		 */
 		public function render_available_widget( array $args ) {
@@ -305,6 +387,27 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					]
 				)
 			;
+		}
+
+		/**
+		 * Render 'post_types' custom widget.
+		 *
+		 * @param array $args
+		 */
+		public function render_post_types( array $args ) {
+			$post_types = array_map(
+				function ( $object ) { return $object->label; },
+				get_post_types( [ 'public' => true ], 'objects' )
+			);
+
+			$this->render(
+				'admin/post-type-widget',
+				[
+					'post_types'  => $post_types,
+					'option_name' => $args['name'] ?? '',
+					'value'       => $args['value'] ?? [],
+				]
+			);
 		}
 
 		private static function format_attrs( array $attrs ): string {

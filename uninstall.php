@@ -1,13 +1,10 @@
 <?php
-/**
- * NSS: uninstall
- */
 
-/* ABSPATH check */
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	die;
+if ( ! ( defined( 'WP_UNINSTALL_PLUGIN' ) && WP_UNINSTALL_PLUGIN ) ) {
+	exit;
 }
 
 require_once __DIR__ . '/index.php';
+require_once __DIR__ . '/core/uninstall-functions.php';
 
-nss()->registers->uninstall->register();
+nss_cleanup_option();

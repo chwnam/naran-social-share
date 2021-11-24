@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'NSS_Reigster_Base_Meta' ) ) {
-	abstract class NSS_Reigster_Base_Meta implements NSS_Register {
+if ( ! class_exists( 'NSS_Register_Base_Meta' ) ) {
+	abstract class NSS_Register_Base_Meta implements NSS_Register {
 		use NSS_Hook_Impl;
 
 		/**

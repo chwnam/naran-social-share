@@ -1,6 +1,6 @@
 <?php
 /**
- * NBPC: Uninstall register
+ * NSS: Uninstall register
  */
 
 /* ABSPATH check */
