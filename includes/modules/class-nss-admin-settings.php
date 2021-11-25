@@ -186,7 +186,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					'name'        => "{$option_name}[exclude]",
 					'value'       => implode( "\r\n", $setup->get_exclude() ),
 					'attrs'       => [ 'rows' => 3 ],
-					'description' => __( 'Social share buttons do not appear on posts in this list.', 'nss' ),
+					'description' => __( 'Social share buttons do not appear on posts in this list. Please enter post ID one by one row.', 'nss' ),
 				]
 			);
 

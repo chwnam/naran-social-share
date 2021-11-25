@@ -48,7 +48,7 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 		}
 
 		/**
-		 * Prepent or append our share buttons to post content.
+		 * Prepend or append our share buttons to post content.
 		 *
 		 * @param string $content
 		 *
@@ -68,7 +68,7 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 		}
 
 		/**
-		 * Check if share buttons are avaiable.
+		 * Check if share buttons are available.
 		 *
 		 * @return bool
 		 */
@@ -127,7 +127,7 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 			}
 			if ( is_string( $args['available'] ) ) {
 				$args['available'] = array_unique(
-					array_filter( array_map( 'sanitize_key', explode( ',', $args['available'] ) ) )
+					array_filter( array_map( 'trim', explode( ',', $args['available'] ) ) )
 				);
 			}
 
