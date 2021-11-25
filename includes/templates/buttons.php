@@ -7,8 +7,12 @@
  *
  * Context:
  *
- * @var array<string, string> $all_avail
- * @var array<string>         $available
+ * @var array<string, string> $all_avail Key: service identifier, value: service string.
+ * @var array<string>         $available Keys of service to be displayed.
+ * @var string                $template  The template name.
+ * @var string                $variant   The template variant.
+ *
+ * @see nss_get_available_services() for $all_avail.
  */
 
 /* ABSPATH check */

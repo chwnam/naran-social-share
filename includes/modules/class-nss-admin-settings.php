@@ -32,6 +32,12 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				->prepre_settings()
 				->script( 'nss-admin-settings' )
 				->enqueue()
+				->localize(
+					[
+						'textCopyShortcode' => __( 'Copy shortcode', 'nss' ),
+						'textCopied'        => __( 'Copied!', 'nss' ),
+					]
+				)
 			;
 
 			$this->render(
@@ -182,6 +188,14 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					'attrs'       => [ 'rows' => 3 ],
 					'description' => __( 'Social share buttons do not appear on posts in this list.', 'nss' ),
 				]
+			);
+
+			add_settings_field(
+				'nss-display-shortcode',
+				__( 'Shortcode Guide', 'nss' ),
+				[ $this, 'render_shortcode_guide' ],
+				'nss',
+				'nss-display'
 			);
 
 			// Section: Kakao API //////////////////////////////////////////////////////////////////////////////////////
@@ -408,6 +422,13 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					'value'       => $args['value'] ?? [],
 				]
 			);
+		}
+
+		/**
+		 * Render 'shortcode_guide' custom widget.
+		 */
+		public function render_shortcode_guide() {
+			$this->render( 'admin/shortcode-guide', [ 'all_avail' => nss_get_available_services() ] );
 		}
 
 		private static function format_attrs( array $attrs ): string {
