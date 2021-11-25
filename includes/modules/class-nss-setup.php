@@ -66,6 +66,17 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 			return (array) $this->get_value( 'exclude' );
 		}
 
+		/**
+		 * Return icon set.
+		 *
+		 * @return string
+		 */
+		public function get_icon_set(): string {
+			$icon_set = $this->get_value( 'icon_set' );
+
+			return empty( $icon_set ) ? 'default' : $icon_set;
+		}
+
 		public function get_kakao_api_key(): string {
 			return (string) $this->get_value( 'kakao_api_key' );
 		}
@@ -105,6 +116,9 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 
 				// exclude
 				'exclude'       => [],
+
+				// icon_set
+				'icon_set'      => 'default',
 
 				// Kakao API Key
 				'kakao_api_key' => '',
@@ -157,7 +171,7 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 				)
 			);
 
-			$value = array_unique(
+			$exclude = array_unique(
 				array_filter(
 					array_map(
 						'absint',
@@ -165,8 +179,10 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 					)
 				)
 			);
-			sort( $value );
-			$output['exclude'] = $value;
+			sort( $exclude );
+			$output['exclude'] = $exclude;
+
+			$output['icon_set'] = sanitize_text_field( $_POST[ $option_name ]['icon_set'] ?? 'default' );
 
 			$output['kakao_api_key'] = sanitize_text_field(
 				$_POST[ $option_name ]['kakao_api_key'] ?? $default['kakao_api_key']

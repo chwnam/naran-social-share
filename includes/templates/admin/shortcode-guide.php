@@ -58,6 +58,9 @@ if ( ! defined( 'ABSPATH' ) ) {
                        autocomplete="off"
                        placeholder="<?php esc_attr_e( 'Variant override', 'nss' ); ?>">
             </p>
+            <p class="description">
+				<?php _e( 'Template and variant parameters are for those who want to develop new button templates.', 'nss' ); ?>
+            </p>
         </div>
     </div>
 </div>

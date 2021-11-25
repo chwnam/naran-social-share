@@ -22,28 +22,10 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 		 */
 		public function initialize() {
 			if ( nss_setup()->is_enabled() && $this->is_sharable() ) {
-				$params = apply_filters( 'nss_share_params', [
-					'title'     => get_the_title(),
-					'thumbnail' => get_the_post_thumbnail_url() ?: '',
-					'permalink' => get_the_permalink()
-				] );
-
 				$this
-					->script( 'nss-front' )
-					->enqueue()
-					->localize(
-						[
-							'opts' => [
-								'width'       => nss_setup()->get_width(),
-								'height'      => nss_setup()->get_height(),
-								'kakaoApiKey' => nss_setup()->get_kakao_api_key(),
-								'shareParams' => $params,
-							],
-						]
-					)
+					->add_filter( 'the_content', 'content', nss_setup()->get_priority() )
+					->prepare_scripts()
 				;
-
-				$this->add_filter( 'the_content', 'content', nss_setup()->get_priority() );
 			}
 		}
 
@@ -102,13 +84,51 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 		 * @see    NSS_Register_Shortcode::get_items()
 		 */
 		public function handle_shortcode( $atts ): string {
-			return $this->render_buttons( $atts );
+			return is_singular() ? $this->render_buttons( $atts ) : '';
+		}
+
+		/**
+		 * Enqueue style for shortcode 'nss'.
+		 *
+		 * @see    NSS_Register_Style::get_items()
+		 * @see    NSS_Register_Shortcode::get_items()
+		 */
+		public function shortcode_enqueue_style() {
+			$this->prepare_scripts();
+		}
+
+		protected function prepare_scripts() {
+			$params = apply_filters( 'nss_share_params', [
+				'title'     => get_the_title(),
+				'thumbnail' => get_the_post_thumbnail_url() ?: '',
+				'permalink' => get_the_permalink()
+			] );
+
+			$this
+				// Script enqueueing.
+				->script( 'nss-front' )
+				->enqueue()
+				->localize(
+					[
+						'opts' => [
+							'width'       => nss_setup()->get_width(),
+							'height'      => nss_setup()->get_height(),
+							'kakaoApiKey' => nss_setup()->get_kakao_api_key(),
+							'shareParams' => $params,
+						],
+					]
+				)
+				// Style enqueueing.
+				->style( 'nss-front' )
+				->enqueue()
+			;
 		}
 
 		protected function render_buttons( array $args = [] ): string {
 			$defaults = [
 				'all_avail' => '',
 				'available' => '',
+				'icon_set'  => '',
 				'template'  => '',
 				'variant'   => '',
 			];
@@ -136,7 +156,21 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 				$args['template'] = 'buttons';
 			}
 
-			$buttons = $this->render( $args['template'], $args, $args['variant'] ?? '', false );
+			// Check icon_set.
+			if ( empty( $args['icon_set'] ) ) {
+				$args['icon_set'] = nss_setup()->get_icon_set();
+			}
+
+			// Add icons.
+			$icon_sets     = nss_get_icon_sets();
+			$args['icons'] = $icon_sets[ $args['icon_set'] ] ?? $icon_sets['default'];
+
+			$buttons = $this->render(
+				$args['template'],
+				$args,
+				$args['variant'] ?? '',
+				false
+			);
 
 			return preg_replace( '/>\s+</', '><', $buttons );
 		}

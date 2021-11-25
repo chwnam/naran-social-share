@@ -191,6 +191,19 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 			);
 
 			add_settings_field(
+				'nss-display-icon-set',
+				__( 'Icon Set', 'nss' ),
+				[ $this, 'render_icon_set' ],
+				'nss',
+				'nss-display',
+				[
+					'id'    => "$option_name-icon-set",
+					'name'  => "{$option_name}[icon_set]",
+					'value' => $setup->get_icon_set(),
+				]
+			);
+
+			add_settings_field(
 				'nss-display-shortcode',
 				__( 'Shortcode Guide', 'nss' ),
 				[ $this, 'render_shortcode_guide' ],
@@ -222,14 +235,6 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					'placeholder' => __( 'Kakao JavaScript API key.', 'nss' ),
 					'attrs'       => [ 'autocomplete' => 'off' ],
 				]
-			);
-
-			// Section: Shortcode ////////////////////////////////////////////////////////////////////////////////////////
-			add_settings_section(
-				'nss-shortcode',
-				__( 'Shortcode', 'nss' ),
-				'__return_empty_string',
-				'nss'
 			);
 
 			do_action( 'nss_prepare_settings' );
@@ -429,6 +434,30 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 		 */
 		public function render_shortcode_guide() {
 			$this->render( 'admin/shortcode-guide', [ 'all_avail' => nss_get_available_services() ] );
+		}
+
+		/**
+		 * Render 'icon_set' custom widget.
+		 */
+		public function render_icon_set( array $args ) {
+			$icon_sets = nss_get_icon_sets();
+			$value     = $args['value'] ?? '';
+
+			if ( empty( $value ) || ! isset( $icon_sets[ $value ] ) ) {
+				$default = NSS_Setup::get_default_value();
+				$value   = $default['icon_set'];
+			}
+
+			$this->render(
+				'admin/icon-set',
+				[
+					'all_avail' => nss_get_available_services(),
+					'icon_sets' => $icon_sets,
+					'id'        => $args['id'] ?? '',
+					'name'      => $args['name'] ?? '',
+					'value'     => $value,
+				]
+			);
 		}
 
 		private static function format_attrs( array $attrs ): string {

@@ -90,14 +90,14 @@
         }
 
         document.querySelectorAll('[data-nss]').forEach(function (elem) {
-            elem.addEventListener('click', (e) => {
-                const target = e.target,
+            elem.addEventListener('click', function (e) {
+                const target = e.currentTarget,
                     type = target.dataset.nss;
                 if (target.tagName === 'A' && target.classList.contains('share')) {
                     e.preventDefault();
                 }
                 sharer.share(type);
-            }, true);
+            });
         });
     });
 

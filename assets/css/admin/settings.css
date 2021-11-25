@@ -4,7 +4,8 @@
 }
 
 #nss_option-width,
-#nss_option-height {
+#nss_option-height,
+#nss_option-priority {
     width: 6em;
 }
 
@@ -47,4 +48,31 @@
 label[for="nss-sg-template"], label[for="nss-sg-variant"] {
     display: inline-block;
     width: 75px;
+}
+
+#nss-icon-set > ul > li:nth-child(2n) {
+    background-color: #e3e3e3;
+}
+
+.nss-icons-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nss-icons-row > li {
+    padding: 10px 15px;
+}
+
+.nss-icon-radio-col {
+    padding: 10px 15px;
+}
+
+.nss-icon-image-wrap {
+    text-align: center;
+}
+
+.nss-icon-set {
+    width: 24px;
+    height: 24px;
 }
