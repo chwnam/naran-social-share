@@ -20,7 +20,7 @@ if ( ! class_exists( 'NSS_Register_Script' ) ) {
 				);
 			} else {
 				// Front-only.
-				yield new NSS_Reg_Script( 'nss-front', $this->src_helper( 'front.js', false ) );
+				yield new NSS_Reg_Script( 'nss-front', $this->src_helper( 'front.js', false ), [], null, true );
 			}
 		}
 	}
