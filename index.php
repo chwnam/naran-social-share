@@ -12,7 +12,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       nss
  * Domain Path:       /languages
- * CPBN version:      1.2.0
+ * CPBN version:      1.2.1
  */
 
 /* ABSPATH check */

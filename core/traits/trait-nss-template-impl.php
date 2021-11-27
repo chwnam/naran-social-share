@@ -52,7 +52,10 @@ if ( ! trait_exists( 'NSS_Template_Impl' ) ) {
 					}
 				}
 
+				$located = apply_filters( 'nss_located_path', $located, $tmpl_type, $relpath, $variant, $ext );
+
 				$cache[ $cache_name ] = $located;
+
 				nss()->set( 'nss:locate_file', $cache );
 			}
 
