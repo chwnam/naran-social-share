@@ -29,16 +29,20 @@ if ( ! trait_exists( 'NSS_Template_Impl' ) ) {
 					$dir = '.';
 				}
 
+				$styl = get_stylesheet_directory();
+				$tmpl = get_template_directory();
+				$plug = dirname(nss()->get_main_file());
+
 				$paths = [
-					$variant ? get_stylesheet_directory() . "/nss/{$dir}/{$file_name}-{$variant}.{$ext}" : false,
-					get_stylesheet_directory() . "/nss/{$dir}/{$file_name}.{$ext}",
-					$variant ? get_template_directory() . "/nss/{$dir}/{$file_name}-{$variant}.{$ext}" : false,
-					get_template_directory() . "/nss/{$dir}/{$file_name}.{$ext}",
-					$variant ? plugin_dir_path( nss()->get_main_file() ) . "includes/templates/{$dir}/{$file_name}-{$variant}.{$ext}" : false,
-					plugin_dir_path( nss()->get_main_file() ) . "includes/templates/{$dir}/{$file_name}.{$ext}",
+					$variant ? "$styl/nss/$dir/$file_name-$variant.$ext" : false,
+					"$styl/nss/$dir/$file_name.$ext",
+					$variant ? "$tmpl/nss/$dir/$file_name-$variant.$ext" : false,
+					"$tmpl/nss/$dir}/$file_name.$ext",
+					$variant ? "$plug/includes/templates/$dir/$file_name-$variant.$ext" : false,
+					"$plug/includes/templates/$dir/$file_name.$ext",
 				];
 
-				$paths   = apply_filters( 'nss_locate_file_paths', array_filter( $paths ), $cache_name  );
+				$paths   = apply_filters( 'nss_locate_file_paths', array_filter( $paths ), $cache_name );
 				$located = false;
 
 				foreach ( (array) $paths as $path ) {
@@ -48,7 +52,10 @@ if ( ! trait_exists( 'NSS_Template_Impl' ) ) {
 					}
 				}
 
+				$located = apply_filters( 'nss_located_path', $located, $tmpl_type, $relpath, $variant, $ext );
+
 				$cache[ $cache_name ] = $located;
+
 				nss()->set( 'nss:locate_file', $cache );
 			}
 
@@ -113,8 +120,12 @@ if ( ! trait_exists( 'NSS_Template_Impl' ) ) {
 			);
 		}
 
-		protected function enqueue_script( string $handle, $once = false ): NSS_Sciprt_Enqueue {
-			return new NSS_Sciprt_Enqueue( $this, $handle, $once );
+		protected function enqueue_script( string $handle ): self {
+			if ( wp_script_is( $handle, 'registered' ) ) {
+				wp_enqueue_script( $handle );
+			}
+
+			return $this;
 		}
 
 		protected function enqueue_style( string $handle ): self {
@@ -123,6 +134,28 @@ if ( ! trait_exists( 'NSS_Template_Impl' ) ) {
 			}
 
 			return $this;
+		}
+
+		/**
+		 * Return a script helper.
+		 *
+		 * @param string $handle
+		 *
+		 * @return NSS_Script_Helper
+		 */
+		protected function script( string $handle ): NSS_Script_Helper {
+			return new NSS_Script_Helper( $this, $handle );
+		}
+
+		/**
+		 * Return a style helper.
+		 *
+		 * @param string $handle
+		 *
+		 * @return NSS_Style_Helper
+		 */
+		protected function style( string $handle ): NSS_Style_Helper {
+			return new NSS_Style_Helper( $this, $handle );
 		}
 	}
 }

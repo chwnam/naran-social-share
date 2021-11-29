@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'NSS_Register_Base_Uninstall' ) ) {
 	abstract class NSS_Register_Base_Uninstall implements NSS_Register {
 		public function __construct() {
+			register_uninstall_hook( nss()->get_main_file(), [ $this, 'register' ] );
 		}
 
 		/**

@@ -1,12 +1,78 @@
-.nss-available-widget {
+.nss-widget-ul {
     margin-top: 0;
+    margin-bottom: 0;
 }
 
 #nss_option-width,
-#nss_option-height {
+#nss_option-height,
+#nss_option-priority {
     width: 6em;
 }
 
 #nss_option-kakao_api_key {
     width: 35em;
+}
+
+#nss-sg {
+    font-family: consolas, monospace;
+    font-size: 18px;
+    padding: 15px 20px;
+    background-color: #fff;
+    margin-top: 15px;
+    font-weight: bold;
+    border: 1px solid #aeaeae;
+}
+
+#nss-sg-description {
+    margin-top: 0;
+}
+
+#nss-sg-toggle {
+    text-decoration: none;
+    font-style: italic;
+}
+
+#nss-sg ~ p {
+    text-align: right;
+}
+
+#nss-sg-copy {
+    text-decoration: none;
+}
+
+#nss-sg-setup-wrap > h4 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+label[for="nss-sg-template"], label[for="nss-sg-variant"] {
+    display: inline-block;
+    width: 75px;
+}
+
+#nss-icon-set > ul > li:nth-child(2n) {
+    background-color: #e3e3e3;
+}
+
+.nss-icons-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nss-icons-row > li {
+    padding: 10px 15px;
+}
+
+.nss-icon-radio-col {
+    padding: 10px 15px;
+}
+
+.nss-icon-image-wrap {
+    text-align: center;
+}
+
+.nss-icon-set {
+    width: 24px;
+    height: 24px;
 }

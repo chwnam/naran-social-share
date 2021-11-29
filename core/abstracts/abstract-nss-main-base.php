@@ -159,15 +159,18 @@ if ( ! class_exists( 'NSS_Main_Base' ) ) {
 		}
 
 		/**
+		 * Load textdomain
+		 */
+		public function load_textdomain() {
+			load_plugin_textdomain( 'nss', false, wp_basename( dirname( $this->get_main_file() ) ) . '/languages' );
+		}
+
+		/**
 		 * Initialize conditional modules.
 		 *
 		 * @return void
 		 */
 		public function init_conditional_modules() {
-		}
-
-		public function load_textdomain() {
-			load_plugin_textdomain( 'nss', false, wp_basename( dirname( $this->get_main_file() ) ) . '/languages' );
 		}
 
 		/**

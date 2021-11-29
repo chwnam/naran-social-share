@@ -48,6 +48,35 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 			return $this->get_value( 'concat' );
 		}
 
+		/**
+		 * Return available post types
+		 *
+		 * @return array
+		 */
+		public function get_post_types(): array {
+			return (array) $this->get_value( 'post_types' );
+		}
+
+		/**
+		 * Return Post ID to exclude.
+		 *
+		 * @return int[]
+		 */
+		public function get_exclude(): array {
+			return (array) $this->get_value( 'exclude' );
+		}
+
+		/**
+		 * Return icon set.
+		 *
+		 * @return string
+		 */
+		public function get_icon_set(): string {
+			$icon_set = $this->get_value( 'icon_set' );
+
+			return empty( $icon_set ) ? 'default' : $icon_set;
+		}
+
 		public function get_kakao_api_key(): string {
 			return (string) $this->get_value( 'kakao_api_key' );
 		}
@@ -57,6 +86,7 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 				return $this->value[ $key ];
 			} else {
 				$default = self::get_default_value();
+
 				return $default[ $key ] ?? null;
 			}
 		}
@@ -80,6 +110,15 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 
 				// concat: prepend, append.
 				'concat'        => 'append',
+
+				// post_type
+				'post_types'    => [],
+
+				// exclude
+				'exclude'       => [],
+
+				// icon_set
+				'icon_set'      => 'default',
 
 				// Kakao API Key
 				'kakao_api_key' => '',
@@ -122,6 +161,28 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 			$output['concat'] = sanitize_key(
 				$_POST[ $option_name ]['concat'] ?? $default['concat']
 			);
+
+			$output['post_types'] = array_unique(
+				array_filter(
+					array_map(
+						function ( $v ) { return sanitize_key( $v ); },
+						(array) ( $_POST[ $option_name ]['post_types'] ?? [] )
+					)
+				)
+			);
+
+			$exclude = array_unique(
+				array_filter(
+					array_map(
+						'absint',
+						explode( "\r\n", sanitize_textarea_field( $_POST[ $option_name ]['exclude'] ?? '' ) )
+					)
+				)
+			);
+			sort( $exclude );
+			$output['exclude'] = $exclude;
+
+			$output['icon_set'] = sanitize_text_field( $_POST[ $option_name ]['icon_set'] ?? 'default' );
 
 			$output['kakao_api_key'] = sanitize_text_field(
 				$_POST[ $option_name ]['kakao_api_key'] ?? $default['kakao_api_key']

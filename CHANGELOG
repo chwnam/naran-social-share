@@ -1,3 +1,14 @@
+0.4.0
+-----
+2021-11-29
+- Share buttons are rearrangeable.
+- Choosing post types is available.
+- Hide buttons per post is available.
+- Shortcode 'nss' added.
+- Show alert after clicking 'Clipboard' share.
+- New services added: KakaoStory, Line, and Pinterest.
+
+
 0.3.0
 -----
 2021-11-22
