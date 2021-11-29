@@ -111,10 +111,11 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 				->localize(
 					[
 						'opts' => [
-							'width'       => nss_setup()->get_width(),
-							'height'      => nss_setup()->get_height(),
-							'kakaoApiKey' => nss_setup()->get_kakao_api_key(),
-							'shareParams' => $params,
+							'width'                 => nss_setup()->get_width(),
+							'height'                => nss_setup()->get_height(),
+							'kakaoApiKey'           => nss_setup()->get_kakao_api_key(),
+							'shareParams'           => $params,
+							'textCopiedToClipboard' => __( 'URL copied to clipboard.', 'nss' ),
 						],
 					]
 				)

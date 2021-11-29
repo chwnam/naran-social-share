@@ -234,6 +234,11 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					'value'       => $setup->get_kakao_api_key(),
 					'placeholder' => __( 'Kakao JavaScript API key.', 'nss' ),
 					'attrs'       => [ 'autocomplete' => 'off' ],
+					'description' => sprintf(
+						/* translators: kakao developers URL. */
+						__( 'Visit <a href="%1$s" target="_blank">Kakao developers</a> and get a JavaScript API key.', 'nss' ),
+						'https://developers.kakao.com/console/app'
+					)
 				]
 			);
 

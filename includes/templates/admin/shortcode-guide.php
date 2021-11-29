@@ -45,18 +45,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
             <h4><?php _e( 'Template', 'nss' ); ?></h4>
             <p>
-                <label for="nss-sg-template">Template</label>
+                <label for="nss-sg-template"><?php _e( 'Template', 'nss' ); ?></label>
                 <input id="nss-sg-template"
                        type="text"
                        autocomplete="off"
                        placeholder="<?php esc_attr_e( 'Template override.', 'nss' ); ?>">
             </p>
             <p>
-                <label for="nss-sg-variant">Variant</label>
+                <label for="nss-sg-variant"><?php _e( 'Variant', 'nss' ); ?></label>
                 <input id="nss-sg-variant"
                        type="text"
                        autocomplete="off"
-                       placeholder="<?php esc_attr_e( 'Variant override', 'nss' ); ?>">
+                       placeholder="<?php esc_attr_e( 'Variant override.', 'nss' ); ?>">
             </p>
             <p class="description">
 				<?php _e( 'Template and variant parameters are for those who want to develop new button templates.', 'nss' ); ?>

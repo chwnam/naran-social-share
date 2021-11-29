@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+asort( $all_avail );
 ?>
 
 <div id="nss-icon-set">

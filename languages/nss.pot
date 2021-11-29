@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Naran Social Share 0.1.0\n"
+"Project-Id-Version: Naran Social Share 0.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-social-share\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-11-13T18:17:43+09:00\n"
+"POT-Creation-Date: 2021-11-29T11:24:32+09:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: nss\n"
@@ -40,97 +40,156 @@ msgstr ""
 msgid "%s is invalid for callback."
 msgstr ""
 
-#: includes/functions.php:16
-msgid "Facebook"
-msgstr ""
-
-#: includes/functions.php:17
-msgid "Twitter"
-msgstr ""
-
-#: includes/functions.php:18
-msgid "LinkedIn"
-msgstr ""
-
-#: includes/functions.php:19
-msgid "Telegram"
-msgstr ""
-
-#: includes/functions.php:20
-msgid "KakaoTalk"
-msgstr ""
-
-#: includes/functions.php:21
-msgid "Naver Blog"
-msgstr ""
-
-#: includes/functions.php:22
-msgid "Clipboard"
-msgstr ""
-
+#: includes/class-nss-main.php:41
 #: includes/modules/class-nss-admin-settings.php:22
 msgid "Naran social share settings"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:45
+#: includes/class-nss-main.php:42
+msgid "Settings"
+msgstr ""
+
+#: includes/functions.php:16
+msgid "Clipboard"
+msgstr ""
+
+#: includes/functions.php:17
+msgid "Facebook"
+msgstr ""
+
+#: includes/functions.php:18
+msgid "KakaoStory"
+msgstr ""
+
+#: includes/functions.php:19
+msgid "KakaoTalk"
+msgstr ""
+
+#: includes/functions.php:20
+msgid "Line"
+msgstr ""
+
+#: includes/functions.php:21
+msgid "LinkedIn"
+msgstr ""
+
+#: includes/functions.php:22
+msgid "Naver Blog"
+msgstr ""
+
+#: includes/functions.php:23
+msgid "Pinterest"
+msgstr ""
+
+#: includes/functions.php:24
+msgid "Telegram"
+msgstr ""
+
+#: includes/functions.php:25
+msgid "Twitter"
+msgstr ""
+
+#: includes/modules/class-nss-admin-settings.php:37
+#: includes/templates/admin/shortcode-guide.php:26
+msgid "Copy shortcode"
+msgstr ""
+
+#: includes/modules/class-nss-admin-settings.php:38
+msgid "Copied!"
+msgstr ""
+
+#: includes/modules/class-nss-admin-settings.php:56
 msgid "General"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:52
+#: includes/modules/class-nss-admin-settings.php:63
 msgid "Enable/Disable"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:60
+#: includes/modules/class-nss-admin-settings.php:71
 msgid "Use social share"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:66
+#: includes/modules/class-nss-admin-settings.php:77
 msgid "Available Services"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:79
+#: includes/modules/class-nss-admin-settings.php:90
 msgid "Popup Width"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:89
-#: includes/modules/class-nss-admin-settings.php:106
+#: includes/modules/class-nss-admin-settings.php:100
+#: includes/modules/class-nss-admin-settings.php:117
 msgid "Popup width, in pixel"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:96
+#: includes/modules/class-nss-admin-settings.php:107
 msgid "Popup Height"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:113
+#: includes/modules/class-nss-admin-settings.php:124
 msgid "Priority"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:123
+#: includes/modules/class-nss-admin-settings.php:134
 msgid "'the_content' filter priority."
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:129
+#: includes/modules/class-nss-admin-settings.php:140
 msgid "Concatenation"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:139
+#: includes/modules/class-nss-admin-settings.php:150
 msgid "Prepend"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:140
+#: includes/modules/class-nss-admin-settings.php:151
 msgid "Append"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:148
+#: includes/modules/class-nss-admin-settings.php:160
+msgid "Display"
+msgstr ""
+
+#: includes/modules/class-nss-admin-settings.php:167
+msgid "Post Types"
+msgstr ""
+
+#: includes/modules/class-nss-admin-settings.php:179
+msgid "Exclude"
+msgstr ""
+
+#: includes/modules/class-nss-admin-settings.php:189
+msgid "Social share buttons do not appear on posts in this list. Please enter post ID one by one row."
+msgstr ""
+
+#: includes/modules/class-nss-admin-settings.php:195
+msgid "Icon Set"
+msgstr ""
+
+#: includes/modules/class-nss-admin-settings.php:208
+msgid "Shortcode Guide"
+msgstr ""
+
+#: includes/modules/class-nss-admin-settings.php:217
 msgid "Kakao API"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:155
+#: includes/modules/class-nss-admin-settings.php:224
 msgid "JavaScript API Key"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:166
+#: includes/modules/class-nss-admin-settings.php:235
 msgid "Kakao JavaScript API key."
+msgstr ""
+
+#. translators: kakao developers URL.
+#: includes/modules/class-nss-admin-settings.php:239
+msgid "Visit <a href=\"%1$s\" target=\"_blank\">Kakao developers</a> and get a JavaScript API key."
+msgstr ""
+
+#: includes/modules/class-nss-front.php:118
+msgid "URL copied to clipboard."
 msgstr ""
 
 #. translators: Option message. Translation is not required.
@@ -139,16 +198,67 @@ msgctxt "Option description."
 msgid "Naran social share option"
 msgstr ""
 
+#: includes/templates/admin/available-widget.php:60
+#: includes/templates/admin/shortcode-guide.php:43
+msgid "Drag a checked item to rearrange output order from the front."
+msgstr ""
+
+#: includes/templates/admin/post-type-widget.php:36
+msgid "Choose items to display social share buttons on every single page of that post type."
+msgstr ""
+
 #: includes/templates/admin/settings.php:18
 msgid "Naran Social Share Settings"
 msgstr ""
 
+#: includes/templates/admin/shortcode-guide.php:19
+msgid "You can insert the shortcode 'nss' manually in the content of any post types."
+msgstr ""
+
+#: includes/templates/admin/shortcode-guide.php:20
+msgid "Configure your shortcode setup here."
+msgstr ""
+
+#: includes/templates/admin/shortcode-guide.php:21
+msgid "Toggle"
+msgstr ""
+
+#: includes/templates/admin/shortcode-guide.php:29
+msgid "Available services"
+msgstr ""
+
+#: includes/templates/admin/shortcode-guide.php:46
+#: includes/templates/admin/shortcode-guide.php:48
+msgid "Template"
+msgstr ""
+
+#: includes/templates/admin/shortcode-guide.php:52
+msgid "Template override."
+msgstr ""
+
+#: includes/templates/admin/shortcode-guide.php:55
+msgid "Variant"
+msgstr ""
+
+#: includes/templates/admin/shortcode-guide.php:59
+msgid "Variant override."
+msgstr ""
+
+#: includes/templates/admin/shortcode-guide.php:62
+msgid "Template and variant parameters are for those who want to develop new button templates."
+msgstr ""
+
 #. translators: clipboard label.
-#: includes/templates/buttons.php:34
+#: includes/templates/buttons.php:44
 msgid "Copy  this page's URL to %s."
 msgstr ""
 
 #. translators: available media label.
-#: includes/templates/buttons.php:38
+#: includes/templates/buttons.php:48
 msgid "Share this page's URL to %s."
+msgstr ""
+
+#. translators: service name.
+#: includes/templates/buttons.php:60
+msgid "%s icon"
 msgstr ""

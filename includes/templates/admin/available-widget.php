@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+asort( $available );
 ?>
 
 <ul class="nss-available-widget nss-widget-ul">
