@@ -165,7 +165,7 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 			$output['post_types'] = array_unique(
 				array_filter(
 					array_map(
-						function ( $v ) { return sanitize_key( $v ); },
+						'sanitize_key',
 						(array) ( $_POST[ $option_name ]['post_types'] ?? [] )
 					)
 				)

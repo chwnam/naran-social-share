@@ -1,3 +1,12 @@
+0.4.1
+-----
+2021-12-03
+- New service added: Pocket
+- Fix fatal error when using shortcode 'nss' without any parameters.
+- Minor code fixes.
+- README update.
+
+
 0.4.0
 -----
 2021-11-29

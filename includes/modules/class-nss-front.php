@@ -78,13 +78,13 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 		 *
 		 * @callback
 		 *
-		 * @param array|string $atts
+		 * @param array|string $atts An empty string when the shortcode is used without parameters.
 		 *
 		 * @return string
 		 * @see    NSS_Register_Shortcode::get_items()
 		 */
 		public function handle_shortcode( $atts ): string {
-			return is_singular() ? $this->render_buttons( $atts ) : '';
+			return $this->render_buttons( $atts ?: [] );
 		}
 
 		/**

@@ -18,7 +18,6 @@ if ( ! class_exists( 'NSS_Registers' ) ) {
 	 * @property-read NSS_Register_Script    $script
 	 * @property-read NSS_Register_Shortcode $shortcode
 	 * @property-read NSS_Register_Style     $style
-	 * @property-read NSS_Register_Uninstall $uninstall
 	 */
 	class NSS_Registers implements NSS_Module {
 		use NSS_Submodule_Impl;
@@ -33,7 +32,6 @@ if ( ! class_exists( 'NSS_Registers' ) ) {
 					'script'    => NSS_Register_Script::class,
 					'shortcode' => NSS_Register_Shortcode::class,
 					'style'     => NSS_Register_Style::class,
-					'uninstall' => function () { return new NSS_Register_Uninstall(); },
 				]
 			);
 		}

@@ -93,6 +93,9 @@
                 window.PinUtils.pinAny();
             }
         },
+        pocket(s) {
+            this.openPopup('https://widgets.getpocket.com/v1/popup?url=' + encodeURIComponent(s.permalink));
+        },
         telegram(s) {
             this.openPopup('https://t.me/share/url?url=' + encodeURIComponent(s.permalink) + '&text=' + encodeURIComponent(s.title))
         },

@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Naran Social Share 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-social-"
 "share\n"
-"POT-Creation-Date: 2021-11-29T11:24:32+09:00\n"
-"PO-Revision-Date: 2021-11-29 11:25+0900\n"
+"POT-Creation-Date: 2021-12-03T15:47:41+09:00\n"
+"PO-Revision-Date: 2021-12-03 15:48+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -85,10 +85,14 @@ msgid "Pinterest"
 msgstr "핀터레스트"
 
 #: includes/functions.php:24
+msgid "Pocket"
+msgstr "포켓"
+
+#: includes/functions.php:25
 msgid "Telegram"
 msgstr "텔레그램"
 
-#: includes/functions.php:25
+#: includes/functions.php:26
 msgid "Twitter"
 msgstr "트위터"
 

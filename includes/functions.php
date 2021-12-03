@@ -21,6 +21,7 @@ if ( ! function_exists( 'nss_get_available_services' ) ) {
 			'linkedIn'   => __( 'LinkedIn', 'nss' ),
 			'naverBlog'  => __( 'Naver Blog', 'nss' ),
 			'pinterest'  => __( 'Pinterest', 'nss' ),
+			'pocket'     => __( 'Pocket', 'nss' ),
 			'telegram'   => __( 'Telegram', 'nss' ),
 			'twitter'    => __( 'Twitter', 'nss' ),
 		] );
@@ -47,6 +48,7 @@ if ( ! function_exists( 'nss_get_icon_sets' ) ) {
 				'linkedIn'   => $img_url . 'linked-in.png',
 				'naverBlog'  => $img_url . 'naver-blog.png',
 				'pinterest'  => $img_url . 'pinterest.png',
+				'pocket'     => $img_url . 'pocket.png',
 				'telegram'   => $img_url . 'telegram.png',
 				'twitter'    => $img_url . 'twitter.png',
 			],
