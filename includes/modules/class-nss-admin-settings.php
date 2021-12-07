@@ -99,6 +99,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					'value'       => $setup->get_width(),
 					'placeholder' => __( 'Popup width, in pixel', 'nss' ),
 					'attrs'       => [ 'min' => '0' ],
+					'after'       => __( 'px', 'nss' ),
 				]
 			);
 
@@ -116,6 +117,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					'value'       => $setup->get_height(),
 					'placeholder' => __( 'Popup width, in pixel', 'nss' ),
 					'attrs'       => [ 'min' => '0' ],
+					'after'       => __( 'px', 'nss' ),
 				]
 			);
 
@@ -191,6 +193,21 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 			);
 
 			add_settings_field(
+				'nss-display-force-enqueue-style',
+				__( 'Force enqueue style', 'nss' ),
+				[ $this, 'render_checkbox' ],
+				'nss',
+				'nss-display',
+				[
+					'id'          => "$option_name-force-enqueue-style",
+					'name'        => "{$option_name}[force_enqueue_style]",
+					'value'       => $setup->is_force_enqueue_style(),
+					'instruction' => __( 'Force style.css to be enqueued in header tags.', 'nss' ),
+					'description' => __( 'If checked, style.css is always output in header tags. You may need this option if you are using [nss] shortcode in your custom builder.', 'nss' ),
+				]
+			);
+
+			add_settings_field(
 				'nss-display-icon-set',
 				__( 'Icon Set', 'nss' ),
 				[ $this, 'render_icon_set' ],
@@ -235,7 +252,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					'placeholder' => __( 'Kakao JavaScript API key.', 'nss' ),
 					'attrs'       => [ 'autocomplete' => 'off' ],
 					'description' => sprintf(
-						/* translators: kakao developers URL. */
+					/* translators: kakao developers URL. */
 						__( 'Visit <a href="%1$s" target="_blank">Kakao developers</a> and get a JavaScript API key.', 'nss' ),
 						'https://developers.kakao.com/console/app'
 					)
@@ -340,6 +357,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					'placeholder' => '',
 					'attrs'       => [],
 					'description' => '',
+					'after'       => '',
 				]
 			);
 
@@ -353,6 +371,10 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				esc_attr( $args['placeholder'] ),
 				self::format_attrs( (array) $args['attrs'] )
 			);
+
+			if ( $args['after'] ) {
+				echo esc_html( $args['after'] );
+			}
 
 			self::render_description( $args['description'] );
 		}
