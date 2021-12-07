@@ -68,9 +68,9 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 				$excluded       = $singular && in_array( get_the_ID(), $setup->get_exclude() );
 			}
 
-			$shareble = $singular && ! $shortcode_used && ! $excluded;
+			$sharable = $singular && ! $shortcode_used && ! $excluded;
 
-			return apply_filters( 'nss_sharable', $shareble );
+			return apply_filters( 'nss_sharable', $sharable );
 		}
 
 		/**
