@@ -84,6 +84,27 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 				$singular       = is_singular( $post_types );
 				$shortcode_used = $singular && ( $p = get_post() ) && has_shortcode( $p->post_content, 'nss' );
 				$excluded       = $singular && in_array( get_the_ID(), $setup->get_exclude() );
+
+				/**
+				 * Filter $singular.
+				 *
+				 * @var bool $singular
+				 */
+				$singular = (bool) apply_filters( 'nss_sharable_singular', $singular );
+
+				/**
+				 * Filter $shortcode_used.
+				 *
+				 * @var bool $shortcode_used
+				 */
+				$shortcode_used = (bool) apply_filters( 'nss_sharable_shortcode_used', $shortcode_used );
+
+				/**
+				 * Filter $excluded
+				 *
+				 * @var bool $excluded
+				 */
+				$excluded = (bool) apply_filters( 'nss_sharable_excluded', $excluded );
 			}
 
 			$sharable = $singular && ! $shortcode_used && ! $excluded;

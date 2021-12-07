@@ -285,6 +285,18 @@ function my_override_nss_icon_sets( $icons ) {
 
 소셜 공유 페이지를 출력할지를 결정하는 필터입니다.
 
+#### nss_sharable_singular
+
+`NSS_Front::is_sharable()` 메소드 내부에서 싱글 타입인지 아닌지를 저장한 변수 `$singular`의 값을 필터합니다.
+
+#### nss_sharable_shortcode_used
+
+`NSS_Front::is_sharable()` 메소드 내부에서 숏코드를 사용했는지 아닌지를 저장한 변수 `$shortcode_used`의 값을 필터합니다.
+
+#### nss_sharable_excluded
+
+`NSS_Front::is_sharable()` 메소드 내부에서 출력 제외할 포스트인지 아닌지를 저장한 변수 `$excluded`의 값을 필터합니다.
+
 #### nss_share_params
 
 소셜 공유 페이지를 출력하기 위한 자바스크립트의 옵션 값을 필터합니다. 필터하는 대상은 연관 배열이며, 이 배열은 다음처럼 구성되어 있습니다.
