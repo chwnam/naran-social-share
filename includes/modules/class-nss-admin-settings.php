@@ -58,6 +58,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				'nss'
 			);
 
+			// Enable/disable.
 			add_settings_field(
 				'nss-enable',
 				__( 'Enable/Disable', 'nss' ),
@@ -72,6 +73,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				]
 			);
 
+			// Available services.
 			add_settings_field(
 				'nss-services',
 				__( 'Available Services', 'nss' ),
@@ -85,12 +87,67 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				]
 			);
 
+			// Post types.
+			add_settings_field(
+				'nss-display-post-type',
+				__( 'Post Types', 'nss' ),
+				[ $this, 'render_post_types' ],
+				'nss',
+				'nss-general',
+				[
+					'name'  => $option_name,
+					'value' => $setup->get_post_types(),
+				]
+			);
+
+			// Exclude.
+			add_settings_field(
+				'nss-display-exclude',
+				__( 'Exclude', 'nss' ),
+				[ $this, 'render_textarea' ],
+				'nss',
+				'nss-general',
+				[
+					'id'          => "$option_name-exclude",
+					'label_for'   => "$option_name-exclude",
+					'name'        => "{$option_name}[exclude]",
+					'value'       => implode( "\r\n", $setup->get_exclude() ),
+					'attrs'       => [ 'rows' => 3 ],
+					'description' => __( 'Social share buttons do not appear on posts in this list. Please enter post ID one by one row.', 'nss' ),
+				]
+			);
+
+
+
+			// Section: Display ////////////////////////////////////////////////////////////////////////////////////////
+			add_settings_section(
+				'nss-display',
+				__( 'Display', 'nss' ),
+				'__return_empty_string',
+				'nss'
+			);
+
+			add_settings_field(
+				'nss-display-force-enqueue-style',
+				__( 'Force enqueue style', 'nss' ),
+				[ $this, 'render_checkbox' ],
+				'nss',
+				'nss-display',
+				[
+					'id'          => "$option_name-force-enqueue-style",
+					'name'        => "{$option_name}[force_enqueue_style]",
+					'value'       => $setup->is_force_enqueue_style(),
+					'instruction' => __( 'Force style.css to be enqueued in header tags.', 'nss' ),
+					'description' => __( 'If checked, style.css is always output in header tags. You may need this option if you are using [nss] shortcode in your custom builder.', 'nss' ),
+				]
+			);
+
 			add_settings_field(
 				'nss-popup-width',
 				__( 'Popup Width', 'nss' ),
 				[ $this, 'render_input' ],
 				'nss',
-				'nss-general',
+				'nss-display',
 				[
 					'id'          => "$option_name-width",
 					'label_for'   => "$option_name-width",
@@ -108,7 +165,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				__( 'Popup Height', 'nss' ),
 				[ $this, 'render_input' ],
 				'nss',
-				'nss-general',
+				'nss-display',
 				[
 					'id'          => "$option_name-height",
 					'label_for'   => "$option_name-height",
@@ -126,7 +183,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				__( 'Priority', 'nss' ),
 				[ $this, 'render_input' ],
 				'nss',
-				'nss-general',
+				'nss-display',
 				[
 					'id'          => "$option_name-priority",
 					'label_for'   => "$option_name-priority",
@@ -142,7 +199,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				__( 'Concatenation', 'nss' ),
 				[ $this, 'render_select' ],
 				'nss',
-				'nss-general',
+				'nss-display',
 				[
 					'id'        => "$option_name-concat",
 					'label_for' => "$option_name-concat",
@@ -153,57 +210,6 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 						'append'  => __( 'Append', 'nss' ),
 					],
 					'attrs'     => [],
-				]
-			);
-
-			// Section: Display ////////////////////////////////////////////////////////////////////////////////////////
-			add_settings_section(
-				'nss-display',
-				__( 'Display', 'nss' ),
-				'__return_empty_string',
-				'nss'
-			);
-
-			add_settings_field(
-				'nss-display-post-type',
-				__( 'Post Types', 'nss' ),
-				[ $this, 'render_post_types' ],
-				'nss',
-				'nss-display',
-				[
-					'name'  => $option_name,
-					'value' => $setup->get_post_types(),
-				]
-			);
-
-			add_settings_field(
-				'nss-display-exclude',
-				__( 'Exclude', 'nss' ),
-				[ $this, 'render_textarea' ],
-				'nss',
-				'nss-display',
-				[
-					'id'          => "$option_name-exclude",
-					'label_for'   => "$option_name-exclude",
-					'name'        => "{$option_name}[exclude]",
-					'value'       => implode( "\r\n", $setup->get_exclude() ),
-					'attrs'       => [ 'rows' => 3 ],
-					'description' => __( 'Social share buttons do not appear on posts in this list. Please enter post ID one by one row.', 'nss' ),
-				]
-			);
-
-			add_settings_field(
-				'nss-display-force-enqueue-style',
-				__( 'Force enqueue style', 'nss' ),
-				[ $this, 'render_checkbox' ],
-				'nss',
-				'nss-display',
-				[
-					'id'          => "$option_name-force-enqueue-style",
-					'name'        => "{$option_name}[force_enqueue_style]",
-					'value'       => $setup->is_force_enqueue_style(),
-					'instruction' => __( 'Force style.css to be enqueued in header tags.', 'nss' ),
-					'description' => __( 'If checked, style.css is always output in header tags. You may need this option if you are using [nss] shortcode in your custom builder.', 'nss' ),
 				]
 			);
 
