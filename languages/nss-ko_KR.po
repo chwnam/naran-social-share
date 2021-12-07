@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Naran Social Share 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-social-"
 "share\n"
-"POT-Creation-Date: 2021-12-03T15:47:41+09:00\n"
-"PO-Revision-Date: 2021-12-03 15:48+0900\n"
+"POT-Creation-Date: 2021-12-07T14:00:17+09:00\n"
+"PO-Revision-Date: 2021-12-07 14:03+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -109,64 +109,27 @@ msgstr "복사됨!"
 msgid "General"
 msgstr "일반"
 
-#: includes/modules/class-nss-admin-settings.php:63
+#: includes/modules/class-nss-admin-settings.php:64
 msgid "Enable/Disable"
 msgstr "활성/비활성"
 
-#: includes/modules/class-nss-admin-settings.php:71
+#: includes/modules/class-nss-admin-settings.php:72
 msgid "Use social share"
 msgstr "소셜 공유 사용"
 
-#: includes/modules/class-nss-admin-settings.php:77
+#: includes/modules/class-nss-admin-settings.php:79
 msgid "Available Services"
 msgstr "가능한 서비스"
 
-#: includes/modules/class-nss-admin-settings.php:90
-msgid "Popup Width"
-msgstr "팝업 너비"
-
-#: includes/modules/class-nss-admin-settings.php:100
-#: includes/modules/class-nss-admin-settings.php:117
-msgid "Popup width, in pixel"
-msgstr "팝업 창의 너비, 픽셀 낟위"
-
-#: includes/modules/class-nss-admin-settings.php:107
-msgid "Popup Height"
-msgstr "팝업 높이"
-
-#: includes/modules/class-nss-admin-settings.php:124
-msgid "Priority"
-msgstr "우선순위"
-
-#: includes/modules/class-nss-admin-settings.php:134
-msgid "'the_content' filter priority."
-msgstr "'the_content' 필터 순위."
-
-#: includes/modules/class-nss-admin-settings.php:140
-msgid "Concatenation"
-msgstr "버튼 위치"
-
-#: includes/modules/class-nss-admin-settings.php:150
-msgid "Prepend"
-msgstr "본문 이전"
-
-#: includes/modules/class-nss-admin-settings.php:151
-msgid "Append"
-msgstr "본문 이후"
-
-#: includes/modules/class-nss-admin-settings.php:160
-msgid "Display"
-msgstr "보이기"
-
-#: includes/modules/class-nss-admin-settings.php:167
+#: includes/modules/class-nss-admin-settings.php:93
 msgid "Post Types"
 msgstr "포스트 타입"
 
-#: includes/modules/class-nss-admin-settings.php:179
+#: includes/modules/class-nss-admin-settings.php:106
 msgid "Exclude"
 msgstr "제외하기"
 
-#: includes/modules/class-nss-admin-settings.php:189
+#: includes/modules/class-nss-admin-settings.php:116
 msgid ""
 "Social share buttons do not appear on posts in this list. Please enter post "
 "ID one by one row."
@@ -174,28 +137,86 @@ msgstr ""
 "이 목록에 있는 포스트들은 소셜 공유 버튼을 보이지 않습니다. 한 줄에 하나씩 포"
 "스트의 ID를 입력하세요."
 
-#: includes/modules/class-nss-admin-settings.php:195
+#: includes/modules/class-nss-admin-settings.php:125
+msgid "Display"
+msgstr "보이기"
+
+#: includes/modules/class-nss-admin-settings.php:132
+msgid "Force enqueue style"
+msgstr "스타일 강제 삽입"
+
+#: includes/modules/class-nss-admin-settings.php:140
+msgid "Force style.css to be enqueued in header tags."
+msgstr "Style.css 파일 항상 헤더 삽입."
+
+#: includes/modules/class-nss-admin-settings.php:141
+msgid ""
+"If checked, style.css is always output in header tags. You may need this "
+"option if you are using [nss] shortcode in your custom builder."
+msgstr ""
+"체크하면 style.css는 항상 헤더 태그 안에 출력됩니다. 커스텀 빌더에서 [nss] 숏"
+"코드를 사용하면 이 옵션이 필요할 수 있습니다."
+
+#: includes/modules/class-nss-admin-settings.php:147
+msgid "Popup Width"
+msgstr "팝업 너비"
+
+#: includes/modules/class-nss-admin-settings.php:157
+#: includes/modules/class-nss-admin-settings.php:175
+msgid "Popup width, in pixel"
+msgstr "팝업 창의 너비, 픽셀 낟위"
+
+#: includes/modules/class-nss-admin-settings.php:159
+#: includes/modules/class-nss-admin-settings.php:177
+msgid "px"
+msgstr "px"
+
+#: includes/modules/class-nss-admin-settings.php:165
+msgid "Popup Height"
+msgstr "팝업 높이"
+
+#: includes/modules/class-nss-admin-settings.php:183
+msgid "Priority"
+msgstr "우선순위"
+
+#: includes/modules/class-nss-admin-settings.php:193
+msgid "'the_content' filter priority."
+msgstr "'the_content' 필터 순위."
+
+#: includes/modules/class-nss-admin-settings.php:199
+msgid "Concatenation"
+msgstr "버튼 위치"
+
+#: includes/modules/class-nss-admin-settings.php:209
+msgid "Prepend"
+msgstr "본문 이전"
+
+#: includes/modules/class-nss-admin-settings.php:210
+msgid "Append"
+msgstr "본문 이후"
+
+#: includes/modules/class-nss-admin-settings.php:218
 msgid "Icon Set"
 msgstr "아이콘 셋"
 
-#: includes/modules/class-nss-admin-settings.php:208
+#: includes/modules/class-nss-admin-settings.php:231
 msgid "Shortcode Guide"
 msgstr "숏코드 가이드"
 
-#: includes/modules/class-nss-admin-settings.php:217
+#: includes/modules/class-nss-admin-settings.php:240
 msgid "Kakao API"
 msgstr "카카오 API"
 
-#: includes/modules/class-nss-admin-settings.php:224
+#: includes/modules/class-nss-admin-settings.php:247
 msgid "JavaScript API Key"
 msgstr "자바스크립트 API"
 
-#: includes/modules/class-nss-admin-settings.php:235
+#: includes/modules/class-nss-admin-settings.php:258
 msgid "Kakao JavaScript API key."
 msgstr "카카오 자바스크립트 API 키."
 
 #. translators: kakao developers URL.
-#: includes/modules/class-nss-admin-settings.php:239
+#: includes/modules/class-nss-admin-settings.php:262
 msgid ""
 "Visit <a href=\"%1$s\" target=\"_blank\">Kakao developers</a> and get a "
 "JavaScript API key."
@@ -203,7 +224,7 @@ msgstr ""
 "<a href=\"%1$s\" target=\"_blank\">카카오 개발자</a>에 방문하여 자바스크립트 "
 "API 키를 발급받으세요."
 
-#: includes/modules/class-nss-front.php:118
+#: includes/modules/class-nss-front.php:158
 msgid "URL copied to clipboard."
 msgstr "URL이 클립보드로 복사되었습니다."
 
