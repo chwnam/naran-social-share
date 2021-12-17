@@ -52,7 +52,6 @@ return array(
     'NSS_Register_Script' => $baseDir . '/includes/registers/class-nss-register-script.php',
     'NSS_Register_Shortcode' => $baseDir . '/includes/registers/class-nss-register-shortcode.php',
     'NSS_Register_Style' => $baseDir . '/includes/registers/class-nss-register-style.php',
-    'NSS_Register_Uninstall' => $baseDir . '/includes/registers/class-nss-register-uninstall.php',
     'NSS_Registers' => $baseDir . '/includes/modules/class-nss-registers.php',
     'NSS_Script_Helper' => $baseDir . '/core/etc/class-nss-script-helper.php',
     'NSS_Setup' => $baseDir . '/includes/modules/class-nss-setup.php',
