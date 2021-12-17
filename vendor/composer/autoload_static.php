@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit805bdb5f8a931b4ddb73f24a30402bf7
+class ComposerStaticInit0cbadd31a026f692ed656e4ec145971e
 {
     public static $files = array (
         'e15030326cae0dc602ab39b252f1ec7e' => __DIR__ . '/../..' . '/core/core-functions.php',
@@ -58,7 +58,6 @@ class ComposerStaticInit805bdb5f8a931b4ddb73f24a30402bf7
         'NSS_Register_Script' => __DIR__ . '/../..' . '/includes/registers/class-nss-register-script.php',
         'NSS_Register_Shortcode' => __DIR__ . '/../..' . '/includes/registers/class-nss-register-shortcode.php',
         'NSS_Register_Style' => __DIR__ . '/../..' . '/includes/registers/class-nss-register-style.php',
-        'NSS_Register_Uninstall' => __DIR__ . '/../..' . '/includes/registers/class-nss-register-uninstall.php',
         'NSS_Registers' => __DIR__ . '/../..' . '/includes/modules/class-nss-registers.php',
         'NSS_Script_Helper' => __DIR__ . '/../..' . '/core/etc/class-nss-script-helper.php',
         'NSS_Setup' => __DIR__ . '/../..' . '/includes/modules/class-nss-setup.php',
@@ -70,7 +69,7 @@ class ComposerStaticInit805bdb5f8a931b4ddb73f24a30402bf7
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInit805bdb5f8a931b4ddb73f24a30402bf7::$classMap;
+            $loader->classMap = ComposerStaticInit0cbadd31a026f692ed656e4ec145971e::$classMap;
 
         }, null, ClassLoader::class);
     }

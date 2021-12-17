@@ -21,12 +21,30 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 		 * Initialize our front.
 		 */
 		public function initialize() {
+			if ( nss_setup()->is_force_enqueue_style() ) {
+				$this->add_action( 'wp_enqueue_scripts', 'forcibly_enqueue_style' );
+			}
+
 			if ( nss_setup()->is_enabled() && $this->is_sharable() ) {
 				$this
 					->add_filter( 'the_content', 'content', nss_setup()->get_priority() )
 					->prepare_scripts()
 				;
 			}
+		}
+
+		/**
+		 * Forcibly enqueue front.css.
+		 *
+		 * Useful if you are using custom builder, and nss shortcodes are used in builder templates.
+		 *
+		 * @callback
+		 * @action     wp_enqueue_scripts
+		 *
+		 * @return void
+		 */
+		public function forcibly_enqueue_style() {
+			$this->enqueue_style( 'nss-front' );
 		}
 
 		/**
@@ -66,11 +84,32 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 				$singular       = is_singular( $post_types );
 				$shortcode_used = $singular && ( $p = get_post() ) && has_shortcode( $p->post_content, 'nss' );
 				$excluded       = $singular && in_array( get_the_ID(), $setup->get_exclude() );
+
+				/**
+				 * Filter $singular.
+				 *
+				 * @var bool $singular
+				 */
+				$singular = (bool) apply_filters( 'nss_sharable_singular', $singular );
+
+				/**
+				 * Filter $shortcode_used.
+				 *
+				 * @var bool $shortcode_used
+				 */
+				$shortcode_used = (bool) apply_filters( 'nss_sharable_shortcode_used', $shortcode_used );
+
+				/**
+				 * Filter $excluded
+				 *
+				 * @var bool $excluded
+				 */
+				$excluded = (bool) apply_filters( 'nss_sharable_excluded', $excluded );
 			}
 
-			$shareble = $singular && ! $shortcode_used && ! $excluded;
+			$sharable = $singular && ! $shortcode_used && ! $excluded;
 
-			return apply_filters( 'nss_sharable', $shareble );
+			return apply_filters( 'nss_sharable', $sharable );
 		}
 
 		/**
@@ -94,35 +133,42 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 		 * @see    NSS_Register_Shortcode::get_items()
 		 */
 		public function shortcode_enqueue_style() {
-			$this->prepare_scripts();
+			$this->enqueue_style( 'nss-front' );
 		}
 
 		protected function prepare_scripts() {
-			$params = apply_filters( 'nss_share_params', [
-				'title'     => get_the_title(),
-				'thumbnail' => get_the_post_thumbnail_url() ?: '',
-				'permalink' => get_the_permalink()
-			] );
+			// Script enqueueing.
+			if ( ! wp_script_is( 'nss-front' ) ) {
+				$params = apply_filters( 'nss_share_params', [
+					'title'     => get_the_title(),
+					'thumbnail' => get_the_post_thumbnail_url() ?: '',
+					'permalink' => get_the_permalink()
+				] );
 
-			$this
-				// Script enqueueing.
-				->script( 'nss-front' )
-				->enqueue()
-				->localize(
-					[
-						'opts' => [
-							'width'                 => nss_setup()->get_width(),
-							'height'                => nss_setup()->get_height(),
-							'kakaoApiKey'           => nss_setup()->get_kakao_api_key(),
-							'shareParams'           => $params,
-							'textCopiedToClipboard' => __( 'URL copied to clipboard.', 'nss' ),
-						],
-					]
-				)
-				// Style enqueueing.
-				->style( 'nss-front' )
-				->enqueue()
-			;
+				$this
+					->script( 'nss-front' )
+					->enqueue()
+					->localize(
+						[
+							'opts' => [
+								'width'                 => nss_setup()->get_width(),
+								'height'                => nss_setup()->get_height(),
+								'kakaoApiKey'           => nss_setup()->get_kakao_api_key(),
+								'shareParams'           => $params,
+								'textCopiedToClipboard' => __( 'URL copied to clipboard.', 'nss' ),
+							],
+						]
+					)
+				;
+			}
+
+			// Style enqueueing.
+			if ( ! wp_style_is( 'nss-front' ) ) {
+				$this
+					->style( 'nss-front' )
+					->enqueue()
+				;
+			}
 		}
 
 		protected function render_buttons( array $args = [] ): string {
@@ -172,6 +218,9 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 				$args['variant'] ?? '',
 				false
 			);
+
+			// Make sure that script/style are all enqueued anyway, even if style would be output in footer.
+			$this->prepare_scripts();
 
 			return preg_replace( '/>\s+</', '><', $buttons );
 		}

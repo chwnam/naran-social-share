@@ -1,3 +1,21 @@
+0.4.2
+-----
+2021-12-17
+
+- Typo fix.
+- Version bumped to 0.4.2.
+
+
+0.4.2-rc.1
+----------
+2021-12-07
+
+- Add 'force enqueue style' option.
+- Add filters: nss_sharable_singular, nss_sharable_shortcode_used, nss_sharable_excluded.
+- Arrange order of settings fields.
+- Fix typos.
+
+
 0.4.1
 -----
 2021-12-03

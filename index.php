@@ -3,7 +3,7 @@
  * Plugin Name:       Naran Social Share
  * Plugin URI:        https://github.com/chwnam/naran-social-share
  * Description:       Share your posts to social media, and so on.
- * Version:           0.4.1
+ * Version:           0.4.2
  * Requires at least: 4.4.0
  * Requires PHP:      7.4
  * Author:            changwoo
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/vendor/autoload.php';
 
 const NSS_MAIN_FILE = __FILE__;
-const NSS_VERSION   = '0.4.1';
+const NSS_VERSION   = '0.4.2';
 const NSS_PRIORITY = 885;
 
 nss();

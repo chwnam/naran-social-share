@@ -67,6 +67,15 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 		}
 
 		/**
+		 * Is front.css forced to be enqueued and be printed out at the header?
+		 *
+		 * @return bool
+		 */
+		public function is_force_enqueue_style(): bool {
+			return (bool) $this->get_value( 'force_enqueue_style' );
+		}
+
+		/**
 		 * Return icon set.
 		 *
 		 * @return string
@@ -93,35 +102,38 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 
 		public static function get_default_value(): array {
 			return [
-				// Enabed/disabled
-				'enabled'       => false,
+				// Enabled/disabled.
+				'enabled'             => false,
 
 				// Available services.
-				'available'     => [],
+				'available'           => [],
 
 				// Popup window width (px).
-				'width'         => 640,
+				'width'               => 640,
 
 				// Popup window height (px).
-				'height'        => 320,
+				'height'              => 320,
 
-				// the_content filter priority.
-				'priority'      => 10,
+				// 'the_content' filter priority.
+				'priority'            => 10,
 
-				// concat: prepend, append.
-				'concat'        => 'append',
+				// Concat: prepend, append.
+				'concat'              => 'append',
 
-				// post_type
-				'post_types'    => [],
+				// Post types.
+				'post_types'          => [],
 
-				// exclude
-				'exclude'       => [],
+				// exclude.
+				'exclude'             => [],
 
-				// icon_set
-				'icon_set'      => 'default',
+				// Force enqueue style (at header).
+				'force_enqueue_style' => false,
 
-				// Kakao API Key
-				'kakao_api_key' => '',
+				// Icon sets.
+				'icon_set'            => 'default',
+
+				// Kakao API Key.
+				'kakao_api_key'       => '',
 			];
 		}
 
@@ -181,6 +193,11 @@ if ( ! class_exists( 'NSS_Setup' ) ) {
 			);
 			sort( $exclude );
 			$output['exclude'] = $exclude;
+
+			$output['force_enqueue_style'] = filter_var(
+				$_POST[ $option_name ]['force_enqueue_style'] ?? $default['force_enqueue_style'],
+				FILTER_VALIDATE_BOOLEAN
+			);
 
 			$output['icon_set'] = sanitize_text_field( $_POST[ $option_name ]['icon_set'] ?? 'default' );
 
