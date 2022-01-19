@@ -36,7 +36,7 @@
         },
         clipboard(s) {
             if (!navigator.clipboard) {
-                clipboardFallback(s);
+                this.clipboardFallback(s);
                 return;
             }
 
