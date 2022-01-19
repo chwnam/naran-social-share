@@ -35,6 +35,18 @@
             document.getElementsByTagName('head')[0].appendChild(script);
         },
         clipboard(s) {
+            if (!navigator.clipboard) {
+                clipboardFallback(s);
+                return;
+            }
+
+            navigator.clipboard.writeText(s.permalink).then(function() {
+                alert(opts.textCopiedToClipboard);
+            }, function(err) {
+                console.error('Clipboard API Failed: ', err);
+            });
+        },
+        clipboardFallback(s) {
             if (s.permalink && s.permalink.length) {
                 let input = document.createElement('input');
                 input.type = 'text';
