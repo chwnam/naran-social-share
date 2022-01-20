@@ -15,6 +15,12 @@
       "email": "donghyeok@shoplic.kr",
       "role": "contributor",
       "homepage": "https://shoplic.kr/"
+    },
+    {
+      "name": " imjlk",
+      "email": "i@m.junglei.kim",
+      "role": "contributor",
+      "homepage": "https://github.com/imjlk"
     }
   ],
   "scripts": {
