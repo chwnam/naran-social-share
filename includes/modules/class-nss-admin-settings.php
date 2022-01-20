@@ -29,7 +29,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 
 		public function output_admin_menu() {
 			$this
-				->prepre_settings()
+				->prepare_settings()
 				->script( 'nss-admin-settings' )
 				->enqueue()
 				->localize(
@@ -46,7 +46,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 			);
 		}
 
-		private function prepre_settings(): self {
+		private function prepare_settings(): self {
 			$option_name = nss_option()->option->get_option_name();
 			$setup       = nss_setup();
 
@@ -116,8 +116,6 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					'description' => __( 'Social share buttons do not appear on posts in this list. Please enter post ID one by one row.', 'nss' ),
 				]
 			);
-
-
 
 			// Section: Display ////////////////////////////////////////////////////////////////////////////////////////
 			add_settings_section(
@@ -261,7 +259,7 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 					/* translators: kakao developers URL. */
 						__( 'Visit <a href="%1$s" target="_blank">Kakao developers</a> and get a JavaScript API key.', 'nss' ),
 						'https://developers.kakao.com/console/app'
-					)
+					),
 				]
 			);
 
@@ -289,18 +287,21 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				]
 			);
 
-			printf(
-				'<input id="%s" name="%s" type="checkbox" value="yes" %s> ',
-				esc_attr( $args['id'] ),
-				esc_attr( $args['name'] ),
-				checked( $args['value'], true, false ),
+			NSS_HTML::input(
+				[
+					'id'      => $args['id'],
+					'name'    => $args['name'],
+					'type'    => 'checkbox',
+					'value'   => 'yes',
+					'checked' => $args['value'],
+				]
 			);
 
-			printf(
-				'<label for="%s">%s</label> ',
-				esc_attr( $args['id'] ),
-				esc_html( $args['instruction'] )
-			);
+			NSS_HTML::tag_open( 'label', [ 'for' => $args['id'] ] );
+			{
+				echo esc_html( $args['instruction'] );
+			}
+			NSS_HTML::tag_close( 'label' );
 
 			self::render_description( $args['description'] );
 		}
@@ -323,23 +324,16 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				]
 			);
 
-			$options = [];
-			foreach ( $args['options'] as $val => $label ) {
-				$options[] = sprintf(
-					'<option value="%s" %s>%s</option>',
-					esc_attr( $val ),
-					selected( $val, $args['value'], false ),
-					esc_html( $label )
-				);
-			}
-
-			printf(
-				'<select id="%s" name="%s" %s>%s</select>',
-				esc_attr( $args['id'] ),
-				esc_attr( $args['name'] ),
-				self::format_attrs( (array) $args['attrs'] ),
-				implode( ' ', $options ),
+			NSS_HTML::select(
+				$args['options'],
+				$args['value'],
+				[
+					'id'   => $args['id'],
+					'name' => $args['name'],
+					...$args['attrs'],
+				]
 			);
+
 
 			self::render_description( $args['description'] );
 		}
@@ -367,15 +361,18 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				]
 			);
 
-			printf(
-				'<input id="%s" name="%s" type="%s" class="%s" value="%s" placeholder="%s" %s> ',
-				esc_attr( $args['id'] ),
-				esc_attr( $args['name'] ),
-				esc_attr( $args['type'] ),
-				esc_attr( $args['class'] ),
-				esc_attr( $args['value'] ),
-				esc_attr( $args['placeholder'] ),
-				self::format_attrs( (array) $args['attrs'] )
+			NSS_HTML::input(
+				array_merge(
+					[
+						'id'          => $args['id'],
+						'name'        => $args['name'],
+						'type'        => $args['type'],
+						'class'       => $args['class'],
+						'value'       => $args['value'],
+						'placeholder' => $args['placeholder'],
+					],
+					$args['attrs']
+				)
 			);
 
 			if ( $args['after'] ) {
@@ -404,13 +401,20 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 				]
 			);
 
-			printf(
-				'<textarea id="%s" name="%s" %s>%s</textarea>',
-				esc_attr( $args['id'] ),
-				esc_attr( $args['name'] ),
-				self::format_attrs( (array) $args['attrs'] ),
-				esc_textarea( $args['value'] )
+			NSS_HTML::tag_open(
+				'textarea',
+				array_merge(
+					[
+						'id'   => $args['id'],
+						'name' => $args['name'],
+					],
+					$args['attrs']
+				)
 			);
+			{
+				echo esc_textarea( $args['value'] );
+			}
+			NSS_HTML::tag_close( 'textarea' );
 
 			self::render_description( $args['description'] );
 		}
@@ -493,26 +497,12 @@ if ( ! class_exists( 'NSS_Admin_Settings' ) ) {
 			);
 		}
 
-		private static function format_attrs( array $attrs ): string {
-			$buffer = [];
-
-			foreach ( $attrs as $key => $value ) {
-				$key   = sanitize_key( $key );
-				$value = esc_attr( $value );
-				if ( $key ) {
-					$buffer[] = "$key=\"$value\"";
-				}
-			}
-
-			return implode( ' ', $buffer );
-		}
-
 		private static function render_description( string $description ) {
 			if ( $description ) {
 				$kses = [
 					'a' => [
 						'href'   => true,
-						'target' => true
+						'target' => true,
 					],
 				];
 				echo '<p class="description">' . wp_kses( $description, $kses ) . '</p>';
