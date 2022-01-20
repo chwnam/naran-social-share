@@ -9,7 +9,9 @@
             thumbnail: '',
             permalink: '',
         },
-        textCopiedToClipboard: ''
+        textCopiedToClipboard: '',
+        textPermalinkIsEmpty: '',
+        textClipboardApiError: '',
     };
 
     const sharer = {
@@ -35,28 +37,26 @@
             document.getElementsByTagName('head')[0].appendChild(script);
         },
         clipboard(s) {
-            if (!navigator.clipboard) {
-                this.clipboardFallback(s);
-                return;
-            }
-
-            navigator.clipboard.writeText(s.permalink).then(function() {
-                alert(opts.textCopiedToClipboard);
-            }, function(err) {
-                console.error('Clipboard API Failed: ', err);
-            });
-        },
-        clipboardFallback(s) {
             if (s.permalink && s.permalink.length) {
-                let input = document.createElement('input');
-                input.type = 'text';
-                input.value = s.permalink;
-                document.body.appendChild(input);
-                input.select();
-                input.setSelectionRange(0, s.permalink.length);
-                document.execCommand('copy');
-                input.remove();
-                alert(opts.textCopiedToClipboard);
+                if ('undefined' !== typeof navigator.clipboard) {
+                    navigator.clipboard.writeText(s.permalink).then(function () {
+                        alert(opts.textCopiedToClipboard + ' new');
+                    }, function (err) {
+                        console.error(opts.textClipboardApiError, err);
+                    });
+                } else if ('function' === typeof document.execCommand) {
+                    let input = document.createElement('input');
+                    input.type = 'text';
+                    input.value = s.permalink;
+                    document.body.appendChild(input);
+                    input.select();
+                    input.setSelectionRange(0, s.permalink.length);
+                    document.execCommand('copy');
+                    input.remove();
+                    alert(opts.textCopiedToClipboard + ' old');
+                }
+            } else {
+                console.log(opts.textPermalinkIsEmpty);
             }
         },
         facebook(s) {
