@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Naran Social Share 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-social-"
 "share\n"
-"POT-Creation-Date: 2021-12-07T14:00:17+09:00\n"
-"PO-Revision-Date: 2021-12-07 14:03+0900\n"
+"POT-Creation-Date: 2022-01-20T14:08:56+09:00\n"
+"PO-Revision-Date: 2022-01-20 14:09+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -39,16 +39,25 @@ msgid "https://blog.changwoo.pe.kr/"
 msgstr "https://blog.changwoo.pe.kr/"
 
 #. translators: formatted module name.
-#: core/abstracts/abstract-nss-main-base.php:131
+#: core/abstracts/abstract-nss-main-base.php:140
 msgid "%s is invalid for callback."
 msgstr "%s 는 잘못된 콜백."
 
-#: includes/class-nss-main.php:41
+#. translators: formatted callback
+#: core/abstracts/registers/abstract-nss-register-base-rewrite-rule.php:64
+msgid ""
+"Rewrite rule binding `%s` is invalid. Please check your rewrite rule "
+"register items."
+msgstr ""
+"다시쓰기 규칙 바인딩 '%s'는 잘못되었습니다. 다시쓰기 레지스터 항목을 다시 점"
+"검하세요."
+
+#: includes/class-nss-main.php:46
 #: includes/modules/class-nss-admin-settings.php:22
 msgid "Naran social share settings"
 msgstr "나란 소셜 공유 설정"
 
-#: includes/class-nss-main.php:42
+#: includes/class-nss-main.php:47
 msgid "Settings"
 msgstr "설정"
 
@@ -137,19 +146,19 @@ msgstr ""
 "이 목록에 있는 포스트들은 소셜 공유 버튼을 보이지 않습니다. 한 줄에 하나씩 포"
 "스트의 ID를 입력하세요."
 
-#: includes/modules/class-nss-admin-settings.php:125
+#: includes/modules/class-nss-admin-settings.php:123
 msgid "Display"
 msgstr "보이기"
 
-#: includes/modules/class-nss-admin-settings.php:132
+#: includes/modules/class-nss-admin-settings.php:130
 msgid "Force enqueue style"
 msgstr "스타일 강제 삽입"
 
-#: includes/modules/class-nss-admin-settings.php:140
+#: includes/modules/class-nss-admin-settings.php:138
 msgid "Force style.css to be enqueued in header tags."
 msgstr "Style.css 파일 항상 헤더 삽입."
 
-#: includes/modules/class-nss-admin-settings.php:141
+#: includes/modules/class-nss-admin-settings.php:139
 msgid ""
 "If checked, style.css is always output in header tags. You may need this "
 "option if you are using [nss] shortcode in your custom builder."
@@ -157,66 +166,66 @@ msgstr ""
 "체크하면 style.css는 항상 헤더 태그 안에 출력됩니다. 커스텀 빌더에서 [nss] 숏"
 "코드를 사용하면 이 옵션이 필요할 수 있습니다."
 
-#: includes/modules/class-nss-admin-settings.php:147
+#: includes/modules/class-nss-admin-settings.php:145
 msgid "Popup Width"
 msgstr "팝업 너비"
 
-#: includes/modules/class-nss-admin-settings.php:157
-#: includes/modules/class-nss-admin-settings.php:175
+#: includes/modules/class-nss-admin-settings.php:155
+#: includes/modules/class-nss-admin-settings.php:173
 msgid "Popup width, in pixel"
 msgstr "팝업 창의 너비, 픽셀 낟위"
 
-#: includes/modules/class-nss-admin-settings.php:159
-#: includes/modules/class-nss-admin-settings.php:177
+#: includes/modules/class-nss-admin-settings.php:157
+#: includes/modules/class-nss-admin-settings.php:175
 msgid "px"
 msgstr "px"
 
-#: includes/modules/class-nss-admin-settings.php:165
+#: includes/modules/class-nss-admin-settings.php:163
 msgid "Popup Height"
 msgstr "팝업 높이"
 
-#: includes/modules/class-nss-admin-settings.php:183
+#: includes/modules/class-nss-admin-settings.php:181
 msgid "Priority"
 msgstr "우선순위"
 
-#: includes/modules/class-nss-admin-settings.php:193
+#: includes/modules/class-nss-admin-settings.php:191
 msgid "'the_content' filter priority."
 msgstr "'the_content' 필터 순위."
 
-#: includes/modules/class-nss-admin-settings.php:199
+#: includes/modules/class-nss-admin-settings.php:197
 msgid "Concatenation"
 msgstr "버튼 위치"
 
-#: includes/modules/class-nss-admin-settings.php:209
+#: includes/modules/class-nss-admin-settings.php:207
 msgid "Prepend"
 msgstr "본문 이전"
 
-#: includes/modules/class-nss-admin-settings.php:210
+#: includes/modules/class-nss-admin-settings.php:208
 msgid "Append"
 msgstr "본문 이후"
 
-#: includes/modules/class-nss-admin-settings.php:218
+#: includes/modules/class-nss-admin-settings.php:216
 msgid "Icon Set"
 msgstr "아이콘 셋"
 
-#: includes/modules/class-nss-admin-settings.php:231
+#: includes/modules/class-nss-admin-settings.php:229
 msgid "Shortcode Guide"
 msgstr "숏코드 가이드"
 
-#: includes/modules/class-nss-admin-settings.php:240
+#: includes/modules/class-nss-admin-settings.php:238
 msgid "Kakao API"
 msgstr "카카오 API"
 
-#: includes/modules/class-nss-admin-settings.php:247
+#: includes/modules/class-nss-admin-settings.php:245
 msgid "JavaScript API Key"
 msgstr "자바스크립트 API"
 
-#: includes/modules/class-nss-admin-settings.php:258
+#: includes/modules/class-nss-admin-settings.php:256
 msgid "Kakao JavaScript API key."
 msgstr "카카오 자바스크립트 API 키."
 
 #. translators: kakao developers URL.
-#: includes/modules/class-nss-admin-settings.php:262
+#: includes/modules/class-nss-admin-settings.php:260
 msgid ""
 "Visit <a href=\"%1$s\" target=\"_blank\">Kakao developers</a> and get a "
 "JavaScript API key."
@@ -227,6 +236,14 @@ msgstr ""
 #: includes/modules/class-nss-front.php:158
 msgid "URL copied to clipboard."
 msgstr "URL이 클립보드로 복사되었습니다."
+
+#: includes/modules/class-nss-front.php:159
+msgid "The permalink is empty."
+msgstr "퍼마링크가 비어 있습니다."
+
+#: includes/modules/class-nss-front.php:160
+msgid "Clipboard API Failed."
+msgstr "클립보드 API가 실패했습니다."
 
 #. translators: Option message. Translation is not required.
 #: includes/registers/class-nss-register-option.php:30

@@ -1,15 +1,15 @@
-# Copyright (C) 2021 changwoo
+# Copyright (C) 2022 changwoo
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Naran Social Share 0.4.1\n"
+"Project-Id-Version: Naran Social Share 0.4.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-social-share\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-12-07T14:00:17+09:00\n"
+"POT-Creation-Date: 2022-01-20T14:08:56+09:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: nss\n"
@@ -36,16 +36,21 @@ msgid "https://blog.changwoo.pe.kr/"
 msgstr ""
 
 #. translators: formatted module name.
-#: core/abstracts/abstract-nss-main-base.php:131
+#: core/abstracts/abstract-nss-main-base.php:140
 msgid "%s is invalid for callback."
 msgstr ""
 
-#: includes/class-nss-main.php:41
+#. translators: formatted callback
+#: core/abstracts/registers/abstract-nss-register-base-rewrite-rule.php:64
+msgid "Rewrite rule binding `%s` is invalid. Please check your rewrite rule register items."
+msgstr ""
+
+#: includes/class-nss-main.php:46
 #: includes/modules/class-nss-admin-settings.php:22
 msgid "Naran social share settings"
 msgstr ""
 
-#: includes/class-nss-main.php:42
+#: includes/class-nss-main.php:47
 msgid "Settings"
 msgstr ""
 
@@ -130,87 +135,95 @@ msgstr ""
 msgid "Social share buttons do not appear on posts in this list. Please enter post ID one by one row."
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:125
+#: includes/modules/class-nss-admin-settings.php:123
 msgid "Display"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:132
+#: includes/modules/class-nss-admin-settings.php:130
 msgid "Force enqueue style"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:140
+#: includes/modules/class-nss-admin-settings.php:138
 msgid "Force style.css to be enqueued in header tags."
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:141
+#: includes/modules/class-nss-admin-settings.php:139
 msgid "If checked, style.css is always output in header tags. You may need this option if you are using [nss] shortcode in your custom builder."
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:147
+#: includes/modules/class-nss-admin-settings.php:145
 msgid "Popup Width"
+msgstr ""
+
+#: includes/modules/class-nss-admin-settings.php:155
+#: includes/modules/class-nss-admin-settings.php:173
+msgid "Popup width, in pixel"
 msgstr ""
 
 #: includes/modules/class-nss-admin-settings.php:157
 #: includes/modules/class-nss-admin-settings.php:175
-msgid "Popup width, in pixel"
-msgstr ""
-
-#: includes/modules/class-nss-admin-settings.php:159
-#: includes/modules/class-nss-admin-settings.php:177
 msgid "px"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:165
+#: includes/modules/class-nss-admin-settings.php:163
 msgid "Popup Height"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:183
+#: includes/modules/class-nss-admin-settings.php:181
 msgid "Priority"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:193
+#: includes/modules/class-nss-admin-settings.php:191
 msgid "'the_content' filter priority."
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:199
+#: includes/modules/class-nss-admin-settings.php:197
 msgid "Concatenation"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:209
+#: includes/modules/class-nss-admin-settings.php:207
 msgid "Prepend"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:210
+#: includes/modules/class-nss-admin-settings.php:208
 msgid "Append"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:218
+#: includes/modules/class-nss-admin-settings.php:216
 msgid "Icon Set"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:231
+#: includes/modules/class-nss-admin-settings.php:229
 msgid "Shortcode Guide"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:240
+#: includes/modules/class-nss-admin-settings.php:238
 msgid "Kakao API"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:247
+#: includes/modules/class-nss-admin-settings.php:245
 msgid "JavaScript API Key"
 msgstr ""
 
-#: includes/modules/class-nss-admin-settings.php:258
+#: includes/modules/class-nss-admin-settings.php:256
 msgid "Kakao JavaScript API key."
 msgstr ""
 
 #. translators: kakao developers URL.
-#: includes/modules/class-nss-admin-settings.php:262
+#: includes/modules/class-nss-admin-settings.php:260
 msgid "Visit <a href=\"%1$s\" target=\"_blank\">Kakao developers</a> and get a JavaScript API key."
 msgstr ""
 
 #: includes/modules/class-nss-front.php:158
 msgid "URL copied to clipboard."
+msgstr ""
+
+#: includes/modules/class-nss-front.php:159
+msgid "The permalink is empty."
+msgstr ""
+
+#: includes/modules/class-nss-front.php:160
+msgid "Clipboard API Failed."
 msgstr ""
 
 #. translators: Option message. Translation is not required.
