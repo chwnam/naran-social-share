@@ -21,15 +21,16 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 		 * Initialize our front.
 		 */
 		public function initialize() {
-			if ( nss_setup()->is_force_enqueue_style() ) {
-				$this->add_action( 'wp_enqueue_scripts', 'forcibly_enqueue_style' );
-			}
-
-			if ( nss_setup()->is_enabled() && $this->is_sharable() ) {
-				$this
-					->add_filter( 'the_content', 'content', nss_setup()->get_priority() )
-					->prepare_scripts()
-				;
+			if ( nss_setup()->is_enabled() ) {
+				if ( nss_setup()->is_force_enqueue_style() ) {
+					$this->add_action( 'wp_enqueue_scripts', 'forcibly_enqueue_style' );
+				}
+				if ( $this->is_sharable() ) {
+					$this
+						->add_filter( 'the_content', 'content', nss_setup()->get_priority() )
+						->prepare_scripts()
+					;
+				}
 			}
 		}
 
@@ -142,7 +143,7 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 				$params = apply_filters( 'nss_share_params', [
 					'title'     => get_the_title(),
 					'thumbnail' => get_the_post_thumbnail_url() ?: '',
-					'permalink' => get_the_permalink()
+					'permalink' => get_the_permalink(),
 				] );
 
 				$this
