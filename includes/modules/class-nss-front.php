@@ -156,6 +156,8 @@ if ( ! class_exists( 'NSS_Front' ) ) {
 								'kakaoApiKey'           => nss_setup()->get_kakao_api_key(),
 								'shareParams'           => $params,
 								'textCopiedToClipboard' => __( 'URL copied to clipboard.', 'nss' ),
+								'textPermalinkIsEmpty'  => __( 'The permalink is empty.', 'nss' ),
+								'textClipboardApiError' => __( 'Clipboard API Failed.', 'nss' ),
 							],
 						]
 					)
