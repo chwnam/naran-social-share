@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'NSS_Script_Helper' ) ) {
 	class NSS_Script_Helper {
-		/** @var NSS_Module|object */
+		/** @var NSS_Template_Impl|NSS_Module */
 		private $parent;
 
 		/** @var string */
@@ -52,7 +52,7 @@ if ( ! class_exists( 'NSS_Script_Helper' ) ) {
 		}
 
 		/**
-		 * Fuction wp_localize_script() wrapper.
+		 * Function wp_localize_script() wrapper.
 		 *
 		 * @param array  $l10n        Localization data.
 		 * @param string $object_name JS object name.
@@ -85,6 +85,9 @@ if ( ! class_exists( 'NSS_Script_Helper' ) ) {
 			return $this;
 		}
 
+		/**
+		 * @return NSS_Template_Impl|NSS_Module
+		 */
 		public function then() {
 			return $this->parent;
 		}

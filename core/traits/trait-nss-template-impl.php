@@ -90,7 +90,7 @@ if ( ! trait_exists( 'NSS_Template_Impl' ) ) {
 				nss()->set( 'nss:ejs_queue', $ejs_queue );
 			}
 
-			$ejs_queue->enqueue( $relpath . ( $variant ? "-{$variant}" : '' ), compact( 'context', 'variant' ) );
+			$ejs_queue->enqueue( $relpath . ( $variant ? "-$variant" : '' ), compact( 'context', 'variant' ) );
 
 			return $this;
 		}

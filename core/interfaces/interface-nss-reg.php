@@ -1,6 +1,6 @@
 <?php
 /**
- * NSS: Registerable interface
+ * NSS: Registrable interface
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

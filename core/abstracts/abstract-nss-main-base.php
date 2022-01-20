@@ -37,6 +37,15 @@ if ( ! class_exists( 'NSS_Main_Base' ) ) {
 		private array $parsed_cache = [];
 
 		/**
+		 * Module's constructor parameters.
+		 * Key:   module name
+		 * Value: Array for constructor.
+		 *
+		 * @var array
+		 */
+		private array $constructor_params = [];
+
+		/**
 		 * Get instance method.
 		 *
 		 * @return NSS_Main_Base
@@ -74,7 +83,7 @@ if ( ! class_exists( 'NSS_Main_Base' ) ) {
 		}
 
 		/**
-		 * Retrieve submodule by given string notaion.
+		 * Retrieve submodule by given string notation.
 		 *
 		 * @param string $module_notation
 		 *
@@ -82,7 +91,7 @@ if ( ! class_exists( 'NSS_Main_Base' ) ) {
 		 */
 		public function get_module_by_notation( string $module_notation ) {
 			if ( class_exists( $module_notation ) ) {
-				return new $module_notation();
+				return $this->new_instance( $module_notation );
 			} elseif ( $module_notation ) {
 				if ( ! isset( $this->parsed_cache[ $module_notation ] ) ) {
 					$module = $this;
@@ -160,17 +169,46 @@ if ( ! class_exists( 'NSS_Main_Base' ) ) {
 
 		/**
 		 * Load textdomain
+		 *
+		 * @used-by initialize()
 		 */
 		public function load_textdomain() {
 			load_plugin_textdomain( 'nss', false, wp_basename( dirname( $this->get_main_file() ) ) . '/languages' );
 		}
 
 		/**
-		 * Initialize conditional modules.
+		 * Return constructor params.
 		 *
-		 * @return void
+		 * @return array
 		 */
-		public function init_conditional_modules() {
+		public function get_constructor_params(): array {
+			return $this->constructor_params;
+		}
+
+		/**
+		 * @uses NSS_Main_Base::init_conditional_modules()
+		 * @uses NSS_Main_Base::load_textdomain()
+		 */
+		protected function initialize() {
+			$this
+				->assign_constructors( $this->get_constructors() )
+				->assign_modules( $this->get_modules() )
+				->add_action( 'plugins_loaded', 'load_textdomain' )
+			;
+
+			// Add 'init_conditional_modules' method if exists.
+			if ( method_exists( $this, 'init_conditional_modules' ) ) {
+				$this->add_action( 'wp', 'init_conditional_modules' );
+			}
+
+			$this->extra_initialize();
+
+			do_action( 'nss_initialized' );
+		}
+
+		protected function assign_constructors( array $constructors ): NSS_Main_Base {
+			$this->constructor_params = $constructors;
+			return $this;
 		}
 
 		/**
@@ -180,14 +218,16 @@ if ( ! class_exists( 'NSS_Main_Base' ) ) {
 		 */
 		abstract protected function get_modules(): array;
 
-		protected function initialize() {
-			$this->assign_modules( $this->get_modules() );
+		/**
+		 * Return constructor params
+		 *
+		 * @return array
+		 */
+		abstract protected function get_constructors(): array;
 
-			$this
-				->add_action( 'plugins_loaded', 'load_textdomain' )
-				->add_action( 'wp', 'init_conditional_modules' );
-
-			do_action( 'nss_initialized' );
-		}
+		/**
+		 * Do NSS_Main specific initialization.
+		 */
+		abstract protected function extra_initialize(): void;
 	}
 }

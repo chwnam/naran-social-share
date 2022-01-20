@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'NSS_Reg_Script' ) ) {
 	class NSS_Reg_Script implements NSS_Reg {
-		const WP_SCRIPT = 'nss-wp-script-generted';
+		const WP_SCRIPT = 'nss-wp-script-generated';
 
 		public string $handle;
 
@@ -26,7 +26,7 @@ if ( ! class_exists( 'NSS_Reg_Script' ) ) {
 
 		/**
 		 * NOTE: If a script is built from wp-scripts, check these:
-		 * - 'src' must be relative to assets/js.
+		 * - 'src'  is relative to assets/js.
 		 * - 'deps' must be 'WP_SCRIPT' constant.
 		 *
 		 * @param string           $handle
@@ -52,18 +52,27 @@ if ( ! class_exists( 'NSS_Reg_Script' ) ) {
 		public function register( $dispatch = null ) {
 			if ( $this->handle && $this->src && ! wp_script_is( $this->handle, 'registered' ) ) {
 				if ( self::WP_SCRIPT === $this->deps ) {
+					// When WP_SCRIPT is used, $src must be a relative path to assets/js.
+					// But why not if it is handled here?
+					$root = plugin_dir_url( nss()->get_main_file() ) . 'assets/js/';
+					if ( 0 === strpos( $this->src, $root ) ) {
+						$this->src = substr( $this->src, strlen( $root ) );
+					}
+
 					$dir  = trim( dirname( $this->src ), '/\\' );
 					$file = pathinfo( $this->src, PATHINFO_FILENAME ) . '.asset.php';
-					$path = path_join( dirname( nss()->get_main_file() ), "assets/js/{$dir}/{$file}" );
+					$path = path_join( dirname( nss()->get_main_file() ), "assets/js/$dir/$file" );
 
-					if ( file_exists( $path ) && is_readable( $path ) ) {
-						$info = include $path;
-
-						$this->src       = plugins_url( "assets/js/{$this->src}", nss()->get_main_file() );
-						$this->deps      = $info['dependencies'] ?? [];
-						$this->ver       = $info['version'] ?? nss()->get_version();
-						$this->in_footer = true;
+					if ( ! file_exists( $path ) || ! is_readable( $path ) ) {
+						return;
 					}
+
+					$info = include $path;
+
+					$this->src       = plugins_url( "assets/js/$this->src", nss()->get_main_file() );
+					$this->deps      = $info['dependencies'] ?? [];
+					$this->ver       = $info['version'] ?? nss()->get_version();
+					$this->in_footer = true;
 				}
 
 				wp_register_script(

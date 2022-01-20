@@ -17,11 +17,6 @@ if ( ! class_exists( 'NSS_Main' ) ) {
 	 * @property-read NSS_Setup          $setup
 	 */
 	final class NSS_Main extends NSS_Main_Base {
-		protected function initialize() {
-			parent::initialize();
-			$this->add_filter( 'plugin_action_links_naran-social-share/index.php', 'add_plugin_action_links' );
-		}
-
 		protected function get_modules(): array {
 			return [
 				'admin_settings' => NSS_Admin_Settings::class,
@@ -29,6 +24,16 @@ if ( ! class_exists( 'NSS_Main' ) ) {
 				'registers'      => NSS_Registers::class,
 				'setup'          => function () { return new NSS_Setup(); },
 			];
+		}
+
+		protected function get_constructors(): array {
+			return [];
+		}
+
+		protected function extra_initialize(): void {
+			// Do some plugin-specific initialization tasks.
+			$plugin = plugin_basename( $this->get_main_file() );
+			$this->add_filter( "plugin_action_links_$plugin", 'add_plugin_action_links' );
 		}
 
 		public function add_plugin_action_links( array $actions ): array {
