@@ -40,7 +40,7 @@
             if (s.permalink && s.permalink.length) {
                 if ('undefined' !== typeof navigator.clipboard) {
                     navigator.clipboard.writeText(s.permalink).then(function () {
-                        alert(opts.textCopiedToClipboard + ' new');
+                        alert(opts.textCopiedToClipboard);
                     }, function (err) {
                         console.error(opts.textClipboardApiError, err);
                     });
@@ -53,7 +53,7 @@
                     input.setSelectionRange(0, s.permalink.length);
                     document.execCommand('copy');
                     input.remove();
-                    alert(opts.textCopiedToClipboard + ' old');
+                    alert(opts.textCopiedToClipboard);
                 }
             } else {
                 console.log(opts.textPermalinkIsEmpty);
