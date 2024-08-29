@@ -1,48 +1,43 @@
-# Copyright (C) 2022 changwoo
+# Copyright (C) 2024 changwoo
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Naran Social Share 0.4.2\n"
+"Project-Id-Version: Naran Social Share 0.4.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-social-share\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-01-20T14:08:56+09:00\n"
+"POT-Creation-Date: 2024-08-29T15:28:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: nss\n"
 
 #. Plugin Name of the plugin
+#: index.php
 #: includes/modules/class-nss-admin-settings.php:23
 msgid "Naran Social Share"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: index.php
 msgid "https://github.com/chwnam/naran-social-share"
 msgstr ""
 
 #. Description of the plugin
+#: index.php
 msgid "Share your posts to social media, and so on."
 msgstr ""
 
 #. Author of the plugin
+#: index.php
 msgid "changwoo"
 msgstr ""
 
 #. Author URI of the plugin
+#: index.php
 msgid "https://blog.changwoo.pe.kr/"
-msgstr ""
-
-#. translators: formatted module name.
-#: core/abstracts/abstract-nss-main-base.php:140
-msgid "%s is invalid for callback."
-msgstr ""
-
-#. translators: formatted callback
-#: core/abstracts/registers/abstract-nss-register-base-rewrite-rule.php:64
-msgid "Rewrite rule binding `%s` is invalid. Please check your rewrite rule register items."
 msgstr ""
 
 #: includes/class-nss-main.php:46
@@ -79,23 +74,27 @@ msgid "LinkedIn"
 msgstr ""
 
 #: includes/functions.php:22
-msgid "Naver Blog"
+msgid "Naver Band"
 msgstr ""
 
 #: includes/functions.php:23
-msgid "Pinterest"
+msgid "Naver Blog"
 msgstr ""
 
 #: includes/functions.php:24
-msgid "Pocket"
+msgid "Pinterest"
 msgstr ""
 
 #: includes/functions.php:25
-msgid "Telegram"
+msgid "Pocket"
 msgstr ""
 
 #: includes/functions.php:26
-msgid "Twitter"
+msgid "Telegram"
+msgstr ""
+
+#: includes/functions.php:27
+msgid "X"
 msgstr ""
 
 #: includes/modules/class-nss-admin-settings.php:37

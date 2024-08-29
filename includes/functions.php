@@ -19,11 +19,12 @@ if ( ! function_exists( 'nss_get_available_services' ) ) {
 			'kakaoTalk'  => __( 'KakaoTalk', 'nss' ),
 			'line'       => __( 'Line', 'nss' ),
 			'linkedIn'   => __( 'LinkedIn', 'nss' ),
+            'naverBand'  => __( 'Naver Band', 'nss' ),
 			'naverBlog'  => __( 'Naver Blog', 'nss' ),
 			'pinterest'  => __( 'Pinterest', 'nss' ),
 			'pocket'     => __( 'Pocket', 'nss' ),
 			'telegram'   => __( 'Telegram', 'nss' ),
-			'twitter'    => __( 'Twitter', 'nss' ),
+			'twitter'    => __( 'X', 'nss' ),
 		] );
 	}
 }
@@ -46,11 +47,12 @@ if ( ! function_exists( 'nss_get_icon_sets' ) ) {
 				'kakaoTalk'  => $img_url . 'kakao-talk.png',
 				'line'       => $img_url . 'line.png',
 				'linkedIn'   => $img_url . 'linked-in.png',
+                'naverBand'  => $img_url . 'naver-band.png',
 				'naverBlog'  => $img_url . 'naver-blog.png',
 				'pinterest'  => $img_url . 'pinterest.png',
 				'pocket'     => $img_url . 'pocket.png',
 				'telegram'   => $img_url . 'telegram.png',
-				'twitter'    => $img_url . 'twitter.png',
+				'twitter'    => $img_url . 'x.png',
 			],
 		] );
 	}

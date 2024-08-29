@@ -97,6 +97,9 @@
         linkedIn(s) {
             this.openPopup('https://www.linkedin.com/shareArticle?url=' + encodeURIComponent(s.permalink) + '&title=' + encodeURIComponent(s.title));
         },
+        naverBand(s) {
+            this.openPopup('https://band.us/plugin/share?body=' + encodeURIComponent(s.title + '\n' + s.permalink) + '&route=' + encodeURIComponent(location.host));
+        },
         naverBlog(s) {
             this.openPopup('https://blog.naver.com/LinkShare.nhn?url=' + encodeURIComponent(s.permalink) + '&title=' + encodeURIComponent(s.title));
         },
@@ -133,7 +136,7 @@
             elem.addEventListener('click', function (e) {
                 const target = e.currentTarget,
                     type = target.dataset.nss;
-                if (target.tagName === 'A' && target.classList.contains('share')) {
+                if (target.tagName === 'A') {
                     e.preventDefault();
                 }
                 sharer.share(type);
